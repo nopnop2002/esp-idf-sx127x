@@ -8,3 +8,5 @@ Simple send or receive.
 When using a transceiver other than 169MHz / 433MHz / 470MHz / 866MHz / 915MHz:   
 ![config-basic-2](https://user-images.githubusercontent.com/6020549/152315416-e91f8f10-3e59-489f-a3b0-f6f4c2fc1cec.jpg)
 
+# Throughput   
+About 300 Bytes/Sec   
