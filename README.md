@@ -7,7 +7,7 @@ I based on [this](https://github.com/Inteform/esp32-lora-library).
 # Changes from the original   
 - Added support for ESP32S2 and ESP32C3.   
 - I left the control of CS to the driver.   
-- Added a sample of pingpong.   
+- Added a sample of ping-pong.   
 
 # Software requirements
 esp-idf v4.4 or later.   
