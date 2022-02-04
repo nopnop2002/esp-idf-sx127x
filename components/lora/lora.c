@@ -245,6 +245,7 @@ lora_set_spreading_factor(int sf)
  * Set bandwidth (bit rate)
  * @param sbw Bandwidth in Hz (up to 500000)
  */
+#if 0
 void 
 lora_set_bandwidth(long sbw)
 {
@@ -261,6 +262,27 @@ lora_set_bandwidth(long sbw)
    else if (sbw <= 250E3) bw = 8;
    else bw = 9;
    lora_write_reg(REG_MODEM_CONFIG_1, (lora_read_reg(REG_MODEM_CONFIG_1) & 0x0f) | (bw << 4));
+}
+#endif
+void 
+lora_set_bandwidth(int sbw)
+{
+   if (sbw < 10) {
+      lora_write_reg(REG_MODEM_CONFIG_1, (lora_read_reg(REG_MODEM_CONFIG_1) & 0x0f) | (sbw << 4));
+   }
+}
+
+/**
+ * Get bandwidth (bit rate)
+ * @param sbw Bandwidth in Hz (up to 500000)
+ */
+int 
+lora_get_bandwidth(void)
+{
+   int bw;
+   bw = lora_read_reg(REG_MODEM_CONFIG_1) & 0xf0;
+   bw = bw >> 4;
+   return bw;
 }
 
 /**
