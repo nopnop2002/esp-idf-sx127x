@@ -62,6 +62,11 @@ void app_main()
 
 	lora_enable_crc();
 
+
+	lora_set_bandwidth(CONFIG_BANDWIDTH);
+	int bw = lora_get_bandwidth();
+	ESP_LOGI(pcTaskGetName(NULL), "bandwidth=%d", bw);
+
 #if CONFIG_SENDER
 	xTaskCreate(&task_tx, "task_tx", 1024*2, NULL, 5, NULL);
 #endif

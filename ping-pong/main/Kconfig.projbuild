@@ -50,7 +50,15 @@ menu "Application Configuration"
 		depends on OTHER
 		int "Frequency to use[MHz]"
 		range 1 999
+		default 433
 		help
 			Frequency to use[MHz].
+
+	config BANDWIDTH
+		int "Signal Bandwidth"
+		range 1 9
+		default 7
+		help
+			Signal Bandwidth.
 
 endmenu 
