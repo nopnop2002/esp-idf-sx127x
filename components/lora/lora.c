@@ -2,6 +2,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_system.h"
+#include "esp_log.h"
 #include "driver/spi_master.h"
 #include "driver/gpio.h"
 
@@ -34,6 +35,7 @@
 #define REG_DETECTION_THRESHOLD        0x37
 #define REG_SYNC_WORD                  0x39
 #define REG_DIO_MAPPING_1              0x40
+#define REG_DIO_MAPPING_2              0x41
 #define REG_VERSION                    0x42
 
 /*
@@ -242,28 +244,79 @@ lora_set_spreading_factor(int sf)
 }
 
 /**
- * Set bandwidth (bit rate)
- * @param sbw Bandwidth in Hz (up to 500000)
+ * Set Mapping of pins DIO0 to DIO5
+ * @param dio Number of DIO(0 to 5)
+ * @param mode mode of DIO(0 to 3)
  */
-#if 0
 void 
-lora_set_bandwidth(long sbw)
+lora_set_dio_mapping(int dio, int mode)
 {
-   int bw;
-
-   if (sbw <= 7.8E3) bw = 0;
-   else if (sbw <= 10.4E3) bw = 1;
-   else if (sbw <= 15.6E3) bw = 2;
-   else if (sbw <= 20.8E3) bw = 3;
-   else if (sbw <= 31.25E3) bw = 4;
-   else if (sbw <= 41.7E3) bw = 5;
-   else if (sbw <= 62.5E3) bw = 6;
-   else if (sbw <= 125E3) bw = 7;
-   else if (sbw <= 250E3) bw = 8;
-   else bw = 9;
-   lora_write_reg(REG_MODEM_CONFIG_1, (lora_read_reg(REG_MODEM_CONFIG_1) & 0x0f) | (bw << 4));
+   if (dio < 4) {
+      int _mode = lora_read_reg(REG_DIO_MAPPING_1);
+      if (dio == 0) {
+         _mode = _mode & 0x3F;
+         _mode = _mode | (mode << 6);
+      } else if (dio == 1) {
+         _mode = _mode & 0xCF;
+         _mode = _mode | (mode << 4);
+      } else if (dio == 2) {
+         _mode = _mode & 0xF3;
+         _mode = _mode | (mode << 2);
+      } else if (dio == 3) {
+         _mode = _mode & 0xFC;
+         _mode = _mode | mode;
+      }
+      lora_write_reg(REG_DIO_MAPPING_1, _mode);
+      ESP_LOGD(TAG, "REG_DIO_MAPPING_1=0x%02x", _mode);
+   } else if (dio < 6) {
+      int _mode = lora_read_reg(REG_DIO_MAPPING_2);
+      if (dio == 4) {
+         _mode = _mode & 0x3F;
+         _mode = _mode | (mode << 6);
+      } else if (dio == 5) {
+         _mode = _mode & 0xCF;
+         _mode = _mode | (mode << 4);
+      }
+      ESP_LOGD(TAG, "REG_DIO_MAPPING_2=0x%02x", _mode);
+      lora_write_reg(REG_DIO_MAPPING_2, _mode);
+   }
 }
-#endif
+
+/**
+ * Get Mapping of pins DIO0 to DIO5
+ * @param dio Number of DIO(0 to 5)
+ */
+int 
+lora_get_dio_mapping(int dio)
+{
+   if (dio < 4) {
+      int _mode = lora_read_reg(REG_DIO_MAPPING_1);
+      ESP_LOGD(TAG, "REG_DIO_MAPPING_1=0x%02x", _mode);
+      if (dio == 0) {
+         return ((_mode >> 6) & 0x03);
+      } else if (dio == 1) {
+         return ((_mode >> 4) & 0x03);
+      } else if (dio == 2) {
+         return ((_mode >> 2) & 0x03);
+      } else if (dio == 3) {
+         return (_mode & 0x03);
+      }
+   } else if (dio < 6) {
+      int _mode = lora_read_reg(REG_DIO_MAPPING_2);
+      ESP_LOGD(TAG, "REG_DIO_MAPPING_2=0x%02x", _mode);
+      if (dio == 4) {
+         return ((_mode >> 6) & 0x03);
+      } else if (dio == 5) {
+         return ((_mode >> 4) & 0x03);
+      }
+   }
+   return 0;
+}
+
+/**
+ * Set bandwidth (bit rate)
+ * @param sbw Signal bandwidth(0 to 9)
+ */
 void 
 lora_set_bandwidth(int sbw)
 {
@@ -274,7 +327,7 @@ lora_set_bandwidth(int sbw)
 
 /**
  * Get bandwidth (bit rate)
- * @param sbw Bandwidth in Hz (up to 500000)
+ * @param sbw Signal bandwidth(0 to 9)
  */
 int 
 lora_get_bandwidth(void)
@@ -493,7 +546,7 @@ lora_received(void)
  * Returns RegIrqFlags.
  */
 int
-lora_irq(void)
+lora_get_irq(void)
 {
    return (lora_read_reg(REG_IRQ_FLAGS));
 }
