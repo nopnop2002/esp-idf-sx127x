@@ -334,6 +334,7 @@ lora_get_bandwidth(void)
 {
    int bw;
    bw = lora_read_reg(REG_MODEM_CONFIG_1) & 0xf0;
+   ESP_LOGD(TAG, "bw=0x%02x", bw);
    bw = bw >> 4;
    return bw;
 }
@@ -447,10 +448,13 @@ lora_init(void)
    uint8_t i = 0;
    while(i++ < TIMEOUT_RESET) {
       version = lora_read_reg(REG_VERSION);
+      ESP_LOGD(TAG, "version=0x%02x", version);
       if(version == 0x12) break;
       vTaskDelay(2);
    }
-   assert(i <= TIMEOUT_RESET + 1); // at the end of the loop above, the max value i can reach is TIMEOUT_RESET + 1
+   ESP_LOGD(TAG, "i=%d, TIMEOUT_RESET=%d", i, TIMEOUT_RESET);
+   if (i == TIMEOUT_RESET + 1) return 0; // Illegal version
+   //assert(i < TIMEOUT_RESET + 1); // at the end of the loop above, the max value i can reach is TIMEOUT_RESET + 1
 
    /*
     * Default configuration.

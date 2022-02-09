@@ -37,7 +37,12 @@ void task_rx(void *pvParameters)
 
 void app_main()
 {
-	lora_init();
+	if (lora_init() == 0) {
+		ESP_LOGE(pcTaskGetName(NULL), "Does not recognize the module");
+		while(1) {
+			vTaskDelay(1);
+		}
+	}
 
 #if CONFIG_169MHZ
 	ESP_LOGI(pcTaskGetName(NULL), "Frequency is 169MHz");

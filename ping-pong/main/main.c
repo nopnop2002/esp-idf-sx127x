@@ -81,27 +81,32 @@ void task_seconfary(void *pvParameters)
 
 void app_main()
 {
-	lora_init();
+	if (lora_init() == 0) {
+		ESP_LOGE(pcTaskGetName(NULL), "Does not recognize the module");
+		while(1) {
+			vTaskDelay(1);
+		}
+	}
 
 #if CONFIG_169MHZ
-  ESP_LOGI(pcTaskGetName(NULL), "Frequency is 169MHz");
-  lora_set_frequency(169e6); // 169MHz
+	ESP_LOGI(pcTaskGetName(NULL), "Frequency is 169MHz");
+	lora_set_frequency(169e6); // 169MHz
 #elif CONFIG_433MHZ
-  ESP_LOGI(pcTaskGetName(NULL), "Frequency is 433MHz");
-  lora_set_frequency(433e6); // 433MHz
+	ESP_LOGI(pcTaskGetName(NULL), "Frequency is 433MHz");
+	lora_set_frequency(433e6); // 433MHz
 #elif CONFIG_470MHZ
-  ESP_LOGI(pcTaskGetName(NULL), "Frequency is 470MHz");
-  lora_set_frequency(470e6); // 470MHz
+	ESP_LOGI(pcTaskGetName(NULL), "Frequency is 470MHz");
+	lora_set_frequency(470e6); // 470MHz
 #elif CONFIG_866MHZ
-  ESP_LOGI(pcTaskGetName(NULL), "Frequency is 866MHz");
-  lora_set_frequency(866e6); // 866MHz
+	ESP_LOGI(pcTaskGetName(NULL), "Frequency is 866MHz");
+	lora_set_frequency(866e6); // 866MHz
 #elif CONFIG_915MHZ
-  ESP_LOGI(pcTaskGetName(NULL), "Frequency is 915MHz");
-  lora_set_frequency(915e6); // 915MHz
+	ESP_LOGI(pcTaskGetName(NULL), "Frequency is 915MHz");
+	lora_set_frequency(915e6); // 915MHz
 #elif CONFIG_OTHER
-  ESP_LOGI(pcTaskGetName(NULL), "Frequency is %dMHz", CONFIG_OTHER_FREQUENCY);
-  long frequency = CONFIG_OTHER_FREQUENCY * 1000000;
-  lora_set_frequency(frequency);
+	ESP_LOGI(pcTaskGetName(NULL), "Frequency is %dMHz", CONFIG_OTHER_FREQUENCY);
+	long frequency = CONFIG_OTHER_FREQUENCY * 1000000;
+	lora_set_frequency(frequency);
 #endif
 
 	lora_enable_crc();
