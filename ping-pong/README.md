@@ -25,7 +25,7 @@ In the lower band (169MHz), signal bandwidths 8&9 are not supported.
 # Screen Shot of Primary side   
 ![pingpong-1](https://user-images.githubusercontent.com/6020549/152316130-784d49eb-a5d9-4858-af54-0979af1948c0.jpg)
 
-# Response time   
+# Response time (Signal bandwidth=125KHz)   
 - 31  Byte:  90 MillSec   
 - 63  Byte: 120 MillSec   
 - 127 Byte: 250 MillSec   
