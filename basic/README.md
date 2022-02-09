@@ -21,4 +21,9 @@ When using a transceiver other than 169MHz / 433MHz / 470MHz / 866MHz / 915MHz:
 In the lower band (169MHz), signal bandwidths 8&9 are not supported.   
 
 # Throughput   
-About 300 Bytes/Sec   
+|bandwidth|Bytes/Sec|
+|:-:||:-:|
+|62.5KHz|200|
+|125KHz|200|
+|250KHz|400|
+|500KHz|770|
