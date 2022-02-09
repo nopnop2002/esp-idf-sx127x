@@ -22,7 +22,7 @@ In the lower band (169MHz), signal bandwidths 8&9 are not supported.
 
 # Throughput   
 |bandwidth|Bytes/Sec|
-|:-:||:-:|
+|:-:|:-:|
 |62.5KHz|200|
 |125KHz|200|
 |250KHz|400|
