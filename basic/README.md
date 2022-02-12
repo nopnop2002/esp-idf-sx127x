@@ -38,4 +38,4 @@ It depends on the payload size.
 |31Bytes|1|50|49|0|
 |63Bytes|49|0|1|50|
 |127Bytes|0|49|0|50|
-|255Bytes|0|0|1|10|
+|255Bytes|0|0|1|0|
