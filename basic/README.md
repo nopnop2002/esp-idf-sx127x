@@ -32,6 +32,7 @@ It depends on the payload size.
 # Packet Lost Rate(Unit=Percent)   
 It depends on the payload size.   
 0 is all packet received.   
+2 indicates that the two packets did not arrive.   
 |Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=5000KHz|
 |:-:|:-:|:-:|:-:|:-:|
 |31Bytes|0|0|0|0|
