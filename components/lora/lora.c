@@ -244,6 +244,15 @@ lora_set_spreading_factor(int sf)
 }
 
 /**
+ * Get spreading factor.
+ */
+int 
+lora_get_spreading_factor(void)
+{
+   return (lora_read_reg(REG_MODEM_CONFIG_2) >> 4);
+}
+
+/**
  * Set Mapping of pins DIO0 to DIO5
  * @param dio Number of DIO(0 to 5)
  * @param mode mode of DIO(0 to 3)
@@ -332,11 +341,12 @@ lora_set_bandwidth(int sbw)
 int 
 lora_get_bandwidth(void)
 {
-   int bw;
-   bw = lora_read_reg(REG_MODEM_CONFIG_1) & 0xf0;
-   ESP_LOGD(TAG, "bw=0x%02x", bw);
-   bw = bw >> 4;
-   return bw;
+   //int bw;
+   //bw = lora_read_reg(REG_MODEM_CONFIG_1) & 0xf0;
+   //ESP_LOGD(TAG, "bw=0x%02x", bw);
+   //bw = bw >> 4;
+   //return bw;
+   return ((lora_read_reg(REG_MODEM_CONFIG_1) & 0xf0) >> 4);
 }
 
 /**
@@ -351,6 +361,15 @@ lora_set_coding_rate(int denominator)
 
    int cr = denominator - 4;
    lora_write_reg(REG_MODEM_CONFIG_1, (lora_read_reg(REG_MODEM_CONFIG_1) & 0xf1) | (cr << 1));
+}
+
+/**
+ * Get coding rate 
+ */ 
+int 
+lora_get_coding_rate(void)
+{
+   return ((lora_read_reg(REG_MODEM_CONFIG_1) & 0x0E) >> 1);
 }
 
 /**
