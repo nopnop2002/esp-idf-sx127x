@@ -12,12 +12,11 @@ When using advanced settings:
 ![config-basic-3](https://user-images.githubusercontent.com/6020549/153731783-da342804-9be9-4b16-9908-4c7aa69419d4.jpg)
 
 LoRa mode has the following three communication parameters.   
-1.Bandwidth (= BW)   
-2. Cording Rate (= CR)   
+1.Signal Bandwidth (= BW)   
+2.Error Cording Rate (= CR)   
 3.Spreading Factor (= SF)   
 The communication speed is faster when BW is large, CR is small, and SF is small.   
 However, as the communication speed increases, the reception sensitivity deteriorates, so select the one that best suits your needs.   
-
 
 - Signal Bandwidth   
 0001:10.4 kHz   
@@ -30,6 +29,22 @@ However, as the communication speed increases, the reception sensitivity deterio
 1000:250 kHz   
 1001:500 kHz   
 In the lower band (169MHz), signal bandwidths 8&9 are not supported.   
+
+- Error coding rate   
+001:4/5(Default)   
+010:4/6   
+011:4/7   
+100:4/8   
+
+- SF rate (expressed as a base-2 logarithm)   
+6:64 chips / symbol   
+7:128 chips / symbol(Default)   
+8:256 chips / symbol   
+9:512 chips / symbol   
+10:1024 chips / symbol   
+11:2048 chips / symbol   
+12:4096 chips / symbol   
+
 
 # Throughput (Unit=Bytes/Sec)   
 It depends on the payload size.   
