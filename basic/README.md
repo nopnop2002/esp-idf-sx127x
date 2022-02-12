@@ -20,7 +20,7 @@ When using a transceiver other than 169MHz / 433MHz / 470MHz / 866MHz / 915MHz:
 1001:500 kHz   
 In the lower band (169MHz), signal bandwidths 8&9 are not supported.   
 
-# Throughput(Unit=Bytes/Sec)   
+# Throughput (Unit=Bytes/Sec)   
 It depends on the payload size.   
 |Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=5000KHz|
 |:-:|:-:|:-:|:-:|:-:|
@@ -29,7 +29,7 @@ It depends on the payload size.
 |127Bytes|284.44|556.53|964.06|1809.06|
 |255Bytes|306.34|579.15|1072.33|1835.85|
 
-# Packet Lost Rate(Unit=Percent)   
+# Packet Lost Rate (Unit=Percent)   
 It depends on the payload size.   
 0 is all packet received.   
 2 indicates that the two packets did not arrive.   
