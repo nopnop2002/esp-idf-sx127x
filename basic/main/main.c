@@ -67,10 +67,29 @@ void app_main()
 
 	lora_enable_crc();
 
+	int cr = 1;
+	int bw = 7;
+	int sf = 7;
+#if CONFIF_ADVANCED
+	cr = CONFIG_CODING_RATE
+	bw = CONFIG_BANDWIDTH;
+	sf = CONFIG_SF_RATE;
+#endif
 
-	lora_set_bandwidth(CONFIG_BANDWIDTH);
-	int bw = lora_get_bandwidth();
+	lora_set_coding_rate(cr);
+	//lora_set_coding_rate(CONFIG_CODING_RATE);
+	//cr = lora_get_coding_rate();
+	ESP_LOGI(pcTaskGetName(NULL), "coding_rate=%d", cr);
+
+	lora_set_bandwidth(bw);
+	//lora_set_bandwidth(CONFIG_BANDWIDTH);
+	//int bw = lora_get_bandwidth();
 	ESP_LOGI(pcTaskGetName(NULL), "bandwidth=%d", bw);
+
+	lora_set_spreading_factor(sf);
+	//lora_set_spreading_factor(CONFIG_SF_RATE);
+	//int sf = lora_get_spreading_factor();
+	ESP_LOGI(pcTaskGetName(NULL), "spreading_factor=%d", sf);
 
 #if CONFIG_SENDER
 	xTaskCreate(&task_tx, "task_tx", 1024*2, NULL, 5, NULL);

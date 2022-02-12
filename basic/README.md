@@ -3,10 +3,21 @@ Simple send or receive.
 
 # Configuration   
 ![config-top](https://user-images.githubusercontent.com/6020549/152315401-0a3ea44f-d045-4b93-b988-b9ce9451f935.jpg)
-![config-basic-1](https://user-images.githubusercontent.com/6020549/152459229-0c198ce6-f0e3-451c-8947-b205d9173b93.jpg)
+![config-basic-1](https://user-images.githubusercontent.com/6020549/153731778-d7c3e699-5afa-4673-8de0-da9ec8ea6808.jpg)
 
 When using a transceiver other than 169MHz / 433MHz / 470MHz / 866MHz / 915MHz:   
-![config-basic-2](https://user-images.githubusercontent.com/6020549/152459233-42b48205-c32c-4947-8e05-09a9b2e27e4d.jpg)
+![config-basic-2](https://user-images.githubusercontent.com/6020549/153731782-dd217bd5-b37c-4d31-b6e8-297d4372ce3c.jpg)
+
+When using advanced settings:   
+![config-basic-3](https://user-images.githubusercontent.com/6020549/153731783-da342804-9be9-4b16-9908-4c7aa69419d4.jpg)
+
+LoRa mode has the following three communication parameters.   
+1.Bandwidth (= BW)   
+2. Cording Rate (= CR)   
+3.Spreading Factor (= SF)   
+The communication speed is faster when BW is large, CR is small, and SF is small.   
+However, as the communication speed increases, the reception sensitivity deteriorates, so select the one that best suits your needs.   
+
 
 - Signal Bandwidth   
 0001:10.4 kHz   

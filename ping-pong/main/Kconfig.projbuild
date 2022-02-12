@@ -54,11 +54,34 @@ menu "Application Configuration"
 		help
 			Frequency to use[MHz].
 
+	config ADVANCED
+		bool "Enable Advanced settings"
+		default false
+		help
+			Enable Advanced settings.
+
+	config CODING_RATE
+		depends on ADVANCED
+		int "Error coding rate"
+		range 1 4
+		default 1
+		help
+			Error coding rate.
+
 	config BANDWIDTH
+		depends on ADVANCED
 		int "Signal Bandwidth"
-		range 1 9
+		range 0 9
 		default 7
 		help
 			Signal Bandwidth.
+
+	config SF_RATE
+		depends on ADVANCED
+		int "Spreading Factor"
+		range 5 12
+		default 7
+		help
+			Spreading Factor.
 
 endmenu 

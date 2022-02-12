@@ -5,10 +5,20 @@ In the secondary, the characters are converted and sent back.
 
 # Configuration   
 ![config-top](https://user-images.githubusercontent.com/6020549/152316024-73f1aab9-fb2a-4729-8683-fbcdae3dcc71.jpg)
-![config-pingpong-1](https://user-images.githubusercontent.com/6020549/152459294-9d603be1-d6d2-465e-81a5-85b70480c8b8.jpg)
+![config-pingpong-1](https://user-images.githubusercontent.com/6020549/153731874-ca03ed3c-aba0-4273-b0b7-bff611a570c5.jpg)
 
 When using a transceiver other than 169MHz / 433MHz / 470MHz / 866MHz / 915MHz:   
-![config-pingpong-2](https://user-images.githubusercontent.com/6020549/152459300-5d837868-421b-4971-ae10-6725e91643fe.jpg)
+![config-pingpong-2](https://user-images.githubusercontent.com/6020549/153731877-2a72fcca-69ab-4822-8be3-1042ff8e092b.jpg)
+
+When using advanced settings:   
+![config-pingpong-3](https://user-images.githubusercontent.com/6020549/153731879-9cfc7705-b7f4-4b2e-9237-cf2eccc54d51.jpg)
+LoRa mode has the following three communication parameters.   
+1.Bandwidth (= BW)   
+2. Cording Rate (= CR)   
+3.Spreading Factor (= SF)   
+The communication speed is faster when BW is large, CR is small, and SF is small.   
+However, as the communication speed increases, the reception sensitivity deteriorates, so select the one that best suits your needs.   
+
 
 - Signal Bandwidth   
 0001:10.4 kHz   
