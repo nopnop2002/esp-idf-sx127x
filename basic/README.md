@@ -18,6 +18,12 @@ LoRa mode has the following three communication parameters.
 The communication speed is faster when BW is large, CR is small, and SF is small.   
 However, as the communication speed increases, the reception sensitivity deteriorates, so select the one that best suits your needs.   
 
+- Error coding rate   
+001:4/5(Default)   
+010:4/6   
+011:4/7   
+100:4/8   
+
 - Signal Bandwidth   
 0001:10.4 kHz   
 0010:15.6 kHz   
@@ -29,12 +35,6 @@ However, as the communication speed increases, the reception sensitivity deterio
 1000:250 kHz   
 1001:500 kHz   
 In the lower band (169MHz), signal bandwidths 8&9 are not supported.   
-
-- Error coding rate   
-001:4/5(Default)   
-010:4/6   
-011:4/7   
-100:4/8   
 
 - SF rate (expressed as a base-2 logarithm)   
 6:64 chips / symbol   
