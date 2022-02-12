@@ -24,18 +24,17 @@ In the lower band (169MHz), signal bandwidths 8&9 are not supported.
 It depends on the payload size.   
 |Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=5000KHz|
 |:-:|:-:|:-:|:-:|:-:|
-|31Bytes|190.83|187.17|393.28|776.94|
-|63Bytes|134.27|448.38|768.68|793.45|
-|127Bytes|290.88|290.48|1064.54|1067.23|
-|255Bytes|309.77|586.07|1107.24|1958.50|
+|31Bytes|183.11|345.98|618.76|621.24|
+|63Bytes|253.52|422.54|698.87|1254.93|
+|127Bytes|284.44|556.53|964.06|1809.06|
+|255Bytes|306.34|579.15|1072.33|1835.85|
 
 # Packet Lost Rate(Unit=Percent)   
 It depends on the payload size.   
 0 is all packet received.   
-50% means that you cannot get half of the packet.   
 |Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=5000KHz|
 |:-:|:-:|:-:|:-:|:-:|
-|31Bytes|1|50|49|0|
-|63Bytes|49|0|1|50|
-|127Bytes|0|49|0|50|
-|255Bytes|0|1|1|0|
+|31Bytes|0|0|0|0|
+|63Bytes|0|0|1|1|
+|127Bytes|0|0|2|1|
+|255Bytes|0|1|0|0|
