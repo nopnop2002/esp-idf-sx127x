@@ -384,6 +384,18 @@ lora_set_preamble_length(long length)
 }
 
 /**
+ * Get the size of preamble.
+ */
+long
+lora_get_preamble_length(void)
+{
+   long preamble;
+   preamble = lora_read_reg(REG_PREAMBLE_MSB) << 8;
+   preamble = preamble + lora_read_reg(REG_PREAMBLE_LSB);
+   return preamble;
+}
+
+/**
  * Change radio sync word.
  * @param sw New sync word to use.
  */
