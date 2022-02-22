@@ -49,3 +49,9 @@ I used a raw ESP-C3-13 to verify that these pins could be used as SPI clocks.
 
 __You can change it to any pin using menuconfig.__   
 
+# Throughput
+The ESP-IDF SPI driver needs 1 tick per transmission.   
+The maximum payload size of sx127x is 255 bytes.   
+Therefore, 1 Tick is required to transmit 255 bytes.   
+This has nothing to do with SPI bus speed.   
+The maximum throughput of sx127x is 25,500 bytes/sec.   
