@@ -43,7 +43,7 @@ void task_primary(void *pvParameters)
 			TickType_t diffTick = currentTick - startTick;
 			ESP_LOGD(pcTaskGetName(NULL), "diffTick=%d", diffTick);
 			if (diffTick > TIMEOUT) {
-				ESP_LOGW(pcTaskGetName(NULL), "Respoce timeout");
+				ESP_LOGW(pcTaskGetName(NULL), "Response timeout");
 				waiting = false;
 			}
 			vTaskDelay(1); // Avoid WatchDog alerts
