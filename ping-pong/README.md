@@ -52,7 +52,7 @@ In the lower band (169MHz), signal bandwidths 8&9 are not supported.
 
 # Response time (Unit=MillSecs)   
 It depends on the payload size.   
-|Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=5000KHz|
+|Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=500KHz|
 |:-:|:-:|:-:|:-:|:-:|
 |31Bytes|330|190|120|80|
 |63Bytes|510|280|160|100|
