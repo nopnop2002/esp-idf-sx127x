@@ -48,7 +48,7 @@ In the lower band (169MHz), signal bandwidths 8&9 are not supported.
 
 # Throughput (Unit=Bytes/Sec)   
 It depends on the payload size.   
-|Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=5000KHz|
+|Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=500KHz|
 |:-:|:-:|:-:|:-:|:-:|
 |31Bytes|183.11|345.98|618.76|621.24|
 |63Bytes|253.52|422.54|698.87|1254.93|
@@ -59,7 +59,7 @@ It depends on the payload size.
 It depends on the payload size.   
 0 is all packet received.   
 2 indicates that the two packets did not arrive.   
-|Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=5000KHz|
+|Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=500KHz|
 |:-:|:-:|:-:|:-:|:-:|
 |31Bytes|0|0|0|0|
 |63Bytes|0|0|1|1|
