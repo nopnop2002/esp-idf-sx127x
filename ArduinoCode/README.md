@@ -3,7 +3,7 @@ I use [this](https://github.com/sandeepmistry/arduino-LoRa).
 
 # Wirering
 
-|SX127x||ATmega||
+|SX127x||ATmega328||
 |:-:|:-:|:-:|:-:
 |RST|--|D9|*1|
 |NSS|--|D10|*1|
