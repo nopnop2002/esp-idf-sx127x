@@ -14,9 +14,9 @@ I use [this](https://github.com/sandeepmistry/arduino-LoRa).
 |VCC|--|3.3V||
 |GND|--|GND||
 
-(*1)    
+(*1)   
 SX127x is not 5V tolerant.   
 You need level shift from 5V to 3.3V.   
 
-(*2)
+(*2)   
 DIO0 pin is optional, it is only needed for receive callback mode.
