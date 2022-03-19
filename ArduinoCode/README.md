@@ -17,6 +17,8 @@ I use [this](https://github.com/sandeepmistry/arduino-LoRa).
 (*1)   
 SX127x is not 5V tolerant.   
 You need level shift from 5V to 3.3V.   
+I used [this](https://www.ti.com/lit/ds/symlink/txs0108e.pdf?ts=1647593549503).   
+
 
 (*2)   
 DIO0 pin is optional, it is only needed for receive callback mode.
