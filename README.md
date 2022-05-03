@@ -49,3 +49,11 @@ I used a raw ESP-C3-13 to verify that these pins could be used as SPI clocks.
 
 __You can change it to any pin using menuconfig.__   
 
+
+# Communication with SX126X
+LoRa's packet format is strictly specified.   
+Therefore, if the following three parameters are the same, they can communicate with each other.   
+- Signal Bandwidth (= BW)   
+- Error Cording Rate (= CR)   
+- Spreading Factor (= SF)   
+
