@@ -1,6 +1,9 @@
 # Example of Arduino environment   
 I use [this](https://github.com/sandeepmistry/arduino-LoRa).   
 
+Unfortunately, this library has incomplete mode switching.   
+Therefore ping-pong does not work.   
+
 # Wirering
 
 |SX127x||ATmega328||
