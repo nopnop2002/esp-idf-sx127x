@@ -57,3 +57,7 @@ Therefore, if the following three parameters are the same, they can communicate 
 - Error Cording Rate (= CR)   
 - Spreading Factor (= SF)   
 
+# Reference
+
+https://github.com/nopnop2002/esp-idf-sx126x
+
