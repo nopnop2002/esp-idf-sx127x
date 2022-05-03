@@ -36,7 +36,7 @@ void task_primary(void *pvParameters)
 				TickType_t currentTick = xTaskGetTickCount();
 				TickType_t diffTick = currentTick - startTick;
 				ESP_LOGI(pcTaskGetName(NULL), "%d byte packet received:[%.*s]", receive_len, receive_len, buf);
-				ESP_LOGI(pcTaskGetName(NULL), "Response time is %d MillSecs", diffTick * portTICK_RATE_MS);
+				ESP_LOGI(pcTaskGetName(NULL), "Response time is %d MillSecs", diffTick * portTICK_PERIOD_MS);
 				waiting = false;
 			}
 			TickType_t currentTick = xTaskGetTickCount();
@@ -136,9 +136,9 @@ void app_main()
 	ESP_LOGI(pcTaskGetName(NULL), "spreading_factor=%d", sf);
 
 #if CONFIG_PRIMARY
-	xTaskCreate(&task_primary, "task_primary", 1024*2, NULL, 5, NULL);
+	xTaskCreate(&task_primary, "task_primary", 1024*3, NULL, 5, NULL);
 #endif
 #if CONFIG_SECONDARY
-	xTaskCreate(&task_seconfary, "task_secondary", 1024*2, NULL, 5, NULL);
+	xTaskCreate(&task_seconfary, "task_secondary", 1024*3, NULL, 5, NULL);
 #endif
 }

@@ -92,9 +92,9 @@ void app_main()
 	ESP_LOGI(pcTaskGetName(NULL), "spreading_factor=%d", sf);
 
 #if CONFIG_SENDER
-	xTaskCreate(&task_tx, "task_tx", 1024*2, NULL, 5, NULL);
+	xTaskCreate(&task_tx, "task_tx", 1024*3, NULL, 5, NULL);
 #endif
 #if CONFIG_RECEIVER
-	xTaskCreate(&task_rx, "task_rx", 1024*2, NULL, 5, NULL);
+	xTaskCreate(&task_rx, "task_rx", 1024*3, NULL, 5, NULL);
 #endif
 }

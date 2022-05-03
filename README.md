@@ -19,7 +19,7 @@ This is because this version supports ESP32-C3.
 ```Shell
 git clone https://github.com/nopnop2002/esp-idf-sx127x
 cd esp-idf-sx127x/basic/
-idf.py set-target {esp32/esp32s2/esp32c3}
+idf.py set-target {esp32/esp32s2/esp32s3/esp32c3}
 idf.py menuconfig
 idf.py flash
 ```
@@ -37,13 +37,13 @@ I used a raw ESP-C3-13 to verify that these pins could be used as SPI clocks.
 
 # Wirering
 
-|SX127X||ESP32|ESP32-S2|ESP32-C3|
+|SX127X||ESP32|ESP32-S2/S3|ESP32-C3|
 |:-:|:-:|:-:|:-:|:-:|
-|NSS|--|GPIO14|GPIO34|GPIO9|
-|RST|--|GPIO33|GPIO38|GPIO1|
-|MISO|--|GPIO19|GPIO33|GPIO18|
-|MOSI|--|GPIO23|GPIO35|GPIO19|
+|RST|--|GPIO16|GPIO38|GPIO8|
+|MISO|--|GPIO19|GPIO37|GPIO18|
 |SCK|--|GPIO18|GPIO36|GPIO10|
+|MOSI|--|GPIO23|GPIO35|GPIO19|
+|NSS|--|GPIO15|GPIO34|GPIO7|
 |GND|--|GND|GND|GND|
 |VCC|--|3.3V|3.3V|3.3V|
 

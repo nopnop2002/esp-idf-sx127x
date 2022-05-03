@@ -69,6 +69,8 @@
 #define SPI_HOST_ID HSPI_HOST
 #elif defined CONFIG_IDF_TARGET_ESP32S2
 #define SPI_HOST_ID SPI2_HOST
+#elif defined CONFIG_IDF_TARGET_ESP32S3
+#define SPI_HOST_ID SPI2_HOST
 #elif defined CONFIG_IDF_TARGET_ESP32C3
 #define SPI_HOST_ID SPI2_HOST
 #endif
@@ -80,9 +82,16 @@ static spi_device_handle_t __spi;
 static int __implicit;
 static long __frequency;
 
+// use spi_device_transmit
+#define SPI_TRANSMIT 1
+
+// use buffer io
+// A little faster
+#define BUFFER_IO 1
+
+
 /**
- * Write a value to a register.
- * @param reg Register index.
+ * Write a value to a register.  * @param reg Register index.
  * @param val Value to write.
  */
 void 
@@ -99,8 +108,45 @@ lora_write_reg(int reg, int val)
    };
 
    //gpio_set_level(CONFIG_CS_GPIO, 0);
+#if SPI_TRANSMIT
    spi_device_transmit(__spi, &t);
+#else
+   spi_device_polling_transmit(__spi, &t);
+#endif
    //gpio_set_level(CONFIG_CS_GPIO, 1);
+}
+
+/**
+ * Write a buffer to a register.
+ * @param reg Register index.
+ * @param val Value to write.
+ * @param len Byte length to write.
+ */
+void
+lora_write_reg_buffer(int reg, uint8_t *val, int len)
+{
+   uint8_t *out;
+   out = (uint8_t *)malloc(len+1);
+   out[0] = 0x80 | reg;
+   for (int i=0;i<len;i++) {
+      out[i+1] = val[i];
+   }
+
+   spi_transaction_t t = {
+      .flags = 0,
+      .length = 8 * (len+1),
+      .tx_buffer = out,
+      .rx_buffer = NULL
+   };
+
+   //gpio_set_level(CONFIG_CS_GPIO, 0);
+#if SPI_TRANSMIT
+   spi_device_transmit(__spi, &t);
+#else
+   spi_device_polling_transmit(__spi, &t);
+#endif
+   //gpio_set_level(CONFIG_CS_GPIO, 1);
+   free(out);
 }
 
 /**
@@ -122,9 +168,52 @@ lora_read_reg(int reg)
    };
 
    //gpio_set_level(CONFIG_CS_GPIO, 0);
+#if SPI_TRANSMIT
    spi_device_transmit(__spi, &t);
+#else
+   spi_device_polling_transmit(__spi, &t);
+#endif
    //gpio_set_level(CONFIG_CS_GPIO, 1);
    return in[1];
+}
+
+/**
+ * Read the current value of a register.
+ * @param reg Register index.
+ * @return Value of the register.
+ * @param len Byte length to read.
+ */
+void
+lora_read_reg_buffer(int reg, uint8_t *val, int len)
+{
+   uint8_t *out;
+   uint8_t *in;
+   out = (uint8_t *)malloc(len+1);
+   in = (uint8_t *)malloc(len+1);
+   out[0] = reg;
+   for (int i=0;i<len;i++) {
+      out[i+1] = 0xff;
+   }
+
+   spi_transaction_t t = {
+      .flags = 0,
+      .length = 8 * (len+1),
+      .tx_buffer = out,
+      .rx_buffer = in
+   };
+
+   //gpio_set_level(CONFIG_CS_GPIO, 0);
+#if SPI_TRANSMIT
+   spi_device_transmit(__spi, &t);
+#else
+   spi_device_polling_transmit(__spi, &t);
+#endif
+   //gpio_set_level(CONFIG_CS_GPIO, 1);
+   for (int i=0;i<len;i++) {
+      val[i] = in[i+1];
+   }
+   free(out);
+   free(in);
 }
 
 /**
@@ -434,10 +523,8 @@ lora_init(void)
    /*
     * Configure CPU hardware to communicate with the radio chip
     */
-   //gpio_pad_select_gpio(CONFIG_RST_GPIO);
    gpio_reset_pin(CONFIG_RST_GPIO);
    gpio_set_direction(CONFIG_RST_GPIO, GPIO_MODE_OUTPUT);
-   //gpio_pad_select_gpio(CONFIG_CS_GPIO);
    gpio_reset_pin(CONFIG_CS_GPIO);
    gpio_set_direction(CONFIG_CS_GPIO, GPIO_MODE_OUTPUT);
    gpio_set_level(CONFIG_CS_GPIO, 1);
@@ -515,8 +602,12 @@ lora_send_packet(uint8_t *buf, int size)
    lora_idle();
    lora_write_reg(REG_FIFO_ADDR_PTR, 0);
 
+#if BUFFER_IO
+   lora_write_reg_buffer(REG_FIFO, buf, size);
+#else
    for(int i=0; i<size; i++) 
       lora_write_reg(REG_FIFO, *buf++);
+#endif
    
    lora_write_reg(REG_PAYLOAD_LENGTH, size);
    
@@ -561,8 +652,12 @@ lora_receive_packet(uint8_t *buf, int size)
    lora_idle();   
    lora_write_reg(REG_FIFO_ADDR_PTR, lora_read_reg(REG_FIFO_RX_CURRENT_ADDR));
    if(len > size) len = size;
+#if BUFFER_IO
+   lora_read_reg_buffer(REG_FIFO, buf, len);
+#else
    for(int i=0; i<len; i++) 
       *buf++ = lora_read_reg(REG_FIFO);
+#endif
 
    return len;
 }
