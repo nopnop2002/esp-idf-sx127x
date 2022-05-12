@@ -65,15 +65,13 @@
 
 #define TIMEOUT_RESET                  100
 
-#ifdef CONFIG_IDF_TARGET_ESP32
-#define SPI_HOST_ID HSPI_HOST
-#elif defined CONFIG_IDF_TARGET_ESP32S2
-#define SPI_HOST_ID SPI2_HOST
-#elif defined CONFIG_IDF_TARGET_ESP32S3
-#define SPI_HOST_ID SPI2_HOST
-#elif defined CONFIG_IDF_TARGET_ESP32C3
-#define SPI_HOST_ID SPI2_HOST
+// SPI Stuff
+#if CONFIG_SPI2_HOST
+#define HOST_ID SPI2_HOST
+#elif CONFIG_SPI3_HOST
+#define HOST_ID SPI3_HOST
 #endif
+
 
 #define TAG "LORA"
 
@@ -539,7 +537,7 @@ lora_init(void)
    };
            
    //ret = spi_bus_initialize(VSPI_HOST, &bus, 0);
-   ret = spi_bus_initialize(SPI_HOST_ID, &bus, SPI_DMA_CH_AUTO);
+   ret = spi_bus_initialize(HOST_ID, &bus, SPI_DMA_CH_AUTO);
    assert(ret == ESP_OK);
 
    spi_device_interface_config_t dev = {
@@ -551,7 +549,7 @@ lora_init(void)
       .pre_cb = NULL
    };
    //ret = spi_bus_add_device(VSPI_HOST, &dev, &__spi);
-   ret = spi_bus_add_device(SPI_HOST_ID, &dev, &__spi);
+   ret = spi_bus_add_device(HOST_ID, &dev, &__spi);
    assert(ret == ESP_OK);
 
    /*

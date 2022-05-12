@@ -33,7 +33,19 @@ I used a raw ESP-C3-13 to verify that these pins could be used as SPI clocks.
 # Configuration for Transceiver   
 
 ![config-lora-1](https://user-images.githubusercontent.com/6020549/152313802-d88ed3ab-dff5-4fe5-a05f-742c2e6e0aa4.jpg)
-![config-lora-2](https://user-images.githubusercontent.com/6020549/152313809-8acc38f9-cdd5-4cf0-8f7d-a499ec4c5c34.jpg)
+![config-lora-2](https://user-images.githubusercontent.com/6020549/168179087-8cba5e92-4519-461a-934e-bf05853c6959.jpg)
+
+
+# SPI BUS selection   
+![config-lora-3](https://user-images.githubusercontent.com/6020549/168179130-7f69187a-a44d-45b1-8d39-ca09205c1a4a.jpg)
+
+The ESP32 series has three SPI BUSs.   
+SPI1_HOST is used for communication with Flash memory.   
+You can use SPI2_HOST and SPI3_HOST freely.   
+When you use SDSPI(SD Card via SPI), SDSPI uses SPI2_HOST BUS.   
+When using this module at the same time as SDSPI or other SPI device using SPI2_HOST, it needs to be changed to SPI3_HOST.   
+When you don't use SDSPI, both SPI2_HOST and SPI3_HOST will work.   
+Previously it was called HSPI_HOST / VSPI_HOST, but now it is called SPI2_HOST / SPI3_HOST.   
 
 # Wirering
 
