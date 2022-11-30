@@ -11,8 +11,7 @@ I based on [this](https://github.com/Inteform/esp32-lora-library).
 - Added some API functions.   
 
 # Software requirements
-esp-idf v4.4 or later.   
-This is because this version supports ESP32-C3.   
+esp-idf v4.4/v5.0.   
 
 # Installation
 

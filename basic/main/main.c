@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <inttypes.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
@@ -11,7 +12,7 @@ void task_tx(void *pvParameters)
 	uint8_t buf[256]; // Maximum Payload size of SX1276/77/78/79 is 255
 	while(1) {
 		TickType_t nowTick = xTaskGetTickCount();
-		int send_len = sprintf((char *)buf,"Hello World!! %d",nowTick);
+		int send_len = sprintf((char *)buf,"Hello World!! %"PRIu32, nowTick);
 		lora_send_packet(buf, send_len);
 		ESP_LOGI(pcTaskGetName(NULL), "%d byte packet sent...", send_len);
 		vTaskDelay(pdMS_TO_TICKS(5000));

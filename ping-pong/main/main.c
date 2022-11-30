@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <inttypes.h>
 #include <string.h>
 #include <ctype.h>
 #include "freertos/FreeRTOS.h"
@@ -16,7 +17,7 @@ void task_primary(void *pvParameters)
 	uint8_t buf[256]; // Maximum Payload size of SX1276/77/78/79 is 255
 	while(1) {
 		TickType_t nowTick = xTaskGetTickCount();
-		int send_len = sprintf((char *)buf,"Hello World!! %d",nowTick);
+		int send_len = sprintf((char *)buf,"Hello World!! %"PRIu32, nowTick);
 
 #if 0
 		// Maximum Payload size of SX1276/77/78/79 is 255
@@ -36,12 +37,12 @@ void task_primary(void *pvParameters)
 				TickType_t currentTick = xTaskGetTickCount();
 				TickType_t diffTick = currentTick - startTick;
 				ESP_LOGI(pcTaskGetName(NULL), "%d byte packet received:[%.*s]", receive_len, receive_len, buf);
-				ESP_LOGI(pcTaskGetName(NULL), "Response time is %d MillSecs", diffTick * portTICK_PERIOD_MS);
+				ESP_LOGI(pcTaskGetName(NULL), "Response time is %"PRIu32" MillSecs", diffTick * portTICK_PERIOD_MS);
 				waiting = false;
 			}
 			TickType_t currentTick = xTaskGetTickCount();
 			TickType_t diffTick = currentTick - startTick;
-			ESP_LOGD(pcTaskGetName(NULL), "diffTick=%d", diffTick);
+			ESP_LOGD(pcTaskGetName(NULL), "diffTick=%"PRIu32, diffTick);
 			if (diffTick > TIMEOUT) {
 				ESP_LOGW(pcTaskGetName(NULL), "Response timeout");
 				waiting = false;
