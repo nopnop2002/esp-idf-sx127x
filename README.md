@@ -5,20 +5,21 @@ SX1276/77/78/79 Low Power Long Range Transceiver driver for esp-idf.
 I based on [this](https://github.com/Inteform/esp32-lora-library).
 
 # Changes from the original   
-- Added support for ESP32S2, ESP32S3 and ESP32C3.   
+- Added support for ESP32S2, ESP32S3, ESP32C2 and ESP32C3.   
 - I left the control of CS to the driver.   
 - Added a sample of ping-pong.   
 - Added some API functions.   
 
 # Software requirements
-esp-idf v4.4/v5.0.   
+ESP-IDF V4.4/V5.0.   
+ESP-IDF V5 is required when using ESP32-C2.   
 
 # Installation
 
 ```Shell
 git clone https://github.com/nopnop2002/esp-idf-sx127x
 cd esp-idf-sx127x/basic/
-idf.py set-target {esp32/esp32s2/esp32s3/esp32c3}
+idf.py set-target {esp32/esp32s2/esp32s3/esp32c2/esp32c3}
 idf.py menuconfig
 idf.py flash
 ```
@@ -48,9 +49,9 @@ Previously it was called HSPI_HOST / VSPI_HOST, but now it is called SPI2_HOST /
 
 # Wirering
 
-|SX127X||ESP32|ESP32-S2/S3|ESP32-C3|
+|SX127X||ESP32|ESP32-S2/S3|ESP32-C2/C3|
 |:-:|:-:|:-:|:-:|:-:|
-|RST|--|GPIO16|GPIO38|GPIO8|
+|RST|--|GPIO16|GPIO38|GPIO3|
 |MISO|--|GPIO19|GPIO37|GPIO4|
 |SCK|--|GPIO18|GPIO36|GPIO5|
 |MOSI|--|GPIO23|GPIO35|GPIO6|

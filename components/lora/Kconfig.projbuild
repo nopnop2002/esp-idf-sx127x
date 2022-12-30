@@ -4,16 +4,16 @@ menu "LoRa Configuration"
 		int
 		default 33 if IDF_TARGET_ESP32
 		default 46 if IDF_TARGET_ESP32S2
-		default 19 if IDF_TARGET_ESP32C3
 		default 48 if IDF_TARGET_ESP32S3
+		default 18 if IDF_TARGET_ESP32C2
+		default 19 if IDF_TARGET_ESP32C3
 
 	config MISO_GPIO
 		int "MISO GPIO"
 		range 0 GPIO_RANGE_MAX
 		default 19 if IDF_TARGET_ESP32
-		default 37 if IDF_TARGET_ESP32S2
-		default 37 if IDF_TARGET_ESP32S3
-		default  4 if IDF_TARGET_ESP32C3
+		default 37 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+		default  4 if IDF_TARGET_ESP32C3 || IDF_TARGET_ESP32C2
 		help
 			Pin Number to be used as the MISO SPI signal.
 
@@ -21,9 +21,8 @@ menu "LoRa Configuration"
 		int "SCK GPIO"
 		range 0 GPIO_RANGE_MAX
 		default 18 if IDF_TARGET_ESP32
-		default 36 if IDF_TARGET_ESP32S2
-		default 36 if IDF_TARGET_ESP32S3
-		default  5 if IDF_TARGET_ESP32C3
+		default 36 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+		default  5 if IDF_TARGET_ESP32C3 || IDF_TARGET_ESP32C2
 		help
 			Pin Number to be used as the SCK SPI signal.
 
@@ -31,9 +30,8 @@ menu "LoRa Configuration"
 		int "MOSI GPIO"
 		range 0 GPIO_RANGE_MAX
 		default 23 if IDF_TARGET_ESP32
-		default 35 if IDF_TARGET_ESP32S2
-		default 35 if IDF_TARGET_ESP32S3
-		default  6 if IDF_TARGET_ESP32C3
+		default 35 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+		default  6 if IDF_TARGET_ESP32C3 || IDF_TARGET_ESP32C2
 		help
 			Pin Number to be used as the MOSI SPI signal.
 
@@ -41,9 +39,8 @@ menu "LoRa Configuration"
 		int "NSS GPIO"
 		range 0 GPIO_RANGE_MAX
 		default 15 if IDF_TARGET_ESP32
-		default 34 if IDF_TARGET_ESP32S2
-		default 34 if IDF_TARGET_ESP32S3
-		default 7  if IDF_TARGET_ESP32C3
+		default 34 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+		default 7  if IDF_TARGET_ESP32C3 || IDF_TARGET_ESP32C2
 		help
 			Pin Number where the NCS pin of the LoRa module is connected to.
 
@@ -51,9 +48,8 @@ menu "LoRa Configuration"
 		int "RST GPIO"
 		range 0 GPIO_RANGE_MAX
 		default 16 if IDF_TARGET_ESP32
-		default 38 if IDF_TARGET_ESP32S2
-		default 38 if IDF_TARGET_ESP32S3
-		default 8  if IDF_TARGET_ESP32C3
+		default 38 if IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32S3
+		default 3  if IDF_TARGET_ESP32C3 || IDF_TARGET_ESP32C2
 		help
 			Pin Number where the NRST pin of the LoRa module is connected to.
 
