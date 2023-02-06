@@ -5,6 +5,7 @@ SX1276/77/78/79 Low Power Long Range Transceiver driver for esp-idf.
 I based on [this](https://github.com/Inteform/esp32-lora-library).
 
 # Changes from the original   
+- Changed make to cmake.   
 - Added support for ESP32S2, ESP32S3, ESP32C2 and ESP32C3.   
 - I left the control of CS to the driver.   
 - Added a sample of ping-pong.   
