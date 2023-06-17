@@ -13,7 +13,7 @@ I based on [this](https://github.com/Inteform/esp32-lora-library).
 
 # Software requirements
 ESP-IDF V4.4/V5.0.   
-ESP-IDF V5 is required when using ESP32-C2.   
+ESP-IDF V5.0 is required when using ESP32-C2.   
 
 # Installation
 
