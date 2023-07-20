@@ -40,7 +40,10 @@ This is LoRa and MQTT gateway application.
 ![config-mqtt-3](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/88562fb1-4ae7-45f8-8043-8c3b2cebfe51)
 
 - As the sender   
- Subscribe with MQTT and send to LoRa.
+ Subscribe with MQTT and send to LoRa.   
+ Publish using mosquitto_pub.   
+ ```mosquitto_pub -h broker.emqx.io -p 1883 -t "/topic/lora/test" -m "test"```
+
 ```
            +----------+           +----------+           +----------+           +----------+
            |          |           |          |           |          |           |          |
@@ -53,9 +56,5 @@ This is LoRa and MQTT gateway application.
 ![config-mqtt-4](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/83f34dde-4a94-4408-95a6-d75051185797)
 
 
-# Publish using mosquitto_pub
-```
-mosquitto_pub -h broker.emqx.io -p 1883 -t "/topic/lora/test" -m "test"
-```
 
 
