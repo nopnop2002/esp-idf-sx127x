@@ -167,7 +167,10 @@ void mqtt_sub(void *pvParameters)
 		} else if (mqttBuf.event_id == MQTT_EVENT_DATA) {
 			ESP_LOGI(TAG, "TOPIC=[%.*s]\r", mqttBuf.topic_len, mqttBuf.topic);
 			ESP_LOGI(TAG, "DATA=[%.*s]\r", mqttBuf.data_len, mqttBuf.data);
-			xMessageBufferSend(xMessageBufferRecv, mqttBuf.data, mqttBuf.data_len, portMAX_DELAY);
+			size_t sended = xMessageBufferSend(xMessageBufferRecv, mqttBuf.data, mqttBuf.data_len, portMAX_DELAY);
+			if (sended != mqttBuf.data_len) {
+				ESP_LOGE(TAG, "xMessageBufferSend fail");
+			}
 		} else if (mqttBuf.event_id == MQTT_EVENT_ERROR) {
 			break;
 		}
