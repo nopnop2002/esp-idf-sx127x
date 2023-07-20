@@ -26,10 +26,6 @@ Sender
 
 ### Radio Setting
 
-
-
-![config-mqtt-3](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/88562fb1-4ae7-45f8-8043-8c3b2cebfe51)
-
 - As the receiver   
 
 ```
@@ -39,6 +35,8 @@ Sender
            |          |           |          |           |          |           |          |
            +----------+           +----------+           +----------+           +----------+
 ```
+
+![config-mqtt-3](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/88562fb1-4ae7-45f8-8043-8c3b2cebfe51)
 
 - As the sender   
 
