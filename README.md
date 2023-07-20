@@ -6,7 +6,7 @@ I based on [this](https://github.com/Inteform/esp32-lora-library).
 
 # Changes from the original   
 - Changed make to cmake.   
-- Added support for ESP32S2, ESP32S3, ESP32C2 and ESP32C3.   
+- Added support for ESP32S2, ESP32S3, ESP32C2, ESP32C3 and ESP32C6.   
 - I left the control of CS to the driver.   
 - Added a sample of ping-pong.   
 - Added some API functions.   
