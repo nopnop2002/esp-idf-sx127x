@@ -79,6 +79,7 @@ static spi_device_handle_t __spi;
 
 static int __implicit;
 static long __frequency;
+static int __send_packet_lost = 0;
 
 // use spi_device_transmit
 #define SPI_TRANSMIT 1
@@ -613,9 +614,23 @@ lora_send_packet(uint8_t *buf, int size)
     * Start transmission and wait for conclusion.
     */
    lora_write_reg(REG_OP_MODE, MODE_LONG_RANGE_MODE | MODE_TX);
+#if 0
    while((lora_read_reg(REG_IRQ_FLAGS) & IRQ_TX_DONE_MASK) == 0)
       vTaskDelay(2);
-
+#endif
+   int loop = 0;
+   while(1) {
+      int irq = lora_read_reg(REG_IRQ_FLAGS);
+      ESP_LOGD(TAG, "lora_read_reg=0x%x", irq);
+      if ((irq & IRQ_TX_DONE_MASK) == IRQ_TX_DONE_MASK) break;
+      loop++;
+      if (loop == 10) break;
+      vTaskDelay(2);
+   }
+   if (loop == 10) {
+      __send_packet_lost++;
+      ESP_LOGE(TAG, "lora_send_packet Fail");
+   }
    lora_write_reg(REG_IRQ_FLAGS, IRQ_TX_DONE_MASK);
 }
 
@@ -681,6 +696,15 @@ lora_get_irq(void)
 
 
 /**
+ * Return lost send packet count.
+ */
+int 
+lora_packet_lost(void)
+{
+   return (__send_packet_lost);
+}
+
+/**
  * Return last packet's RSSI.
  */
 int 
@@ -688,6 +712,7 @@ lora_packet_rssi(void)
 {
    return (lora_read_reg(REG_PKT_RSSI_VALUE) - (__frequency < 868E6 ? 164 : 157));
 }
+
 
 /**
  * Return last packet's SNR (signal to noise ratio).

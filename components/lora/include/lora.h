@@ -27,6 +27,7 @@ int lora_init(void);
 void lora_send_packet(uint8_t *buf, int size);
 int lora_receive_packet(uint8_t *buf, int size);
 int lora_received(void);
+int lora_packet_lost(void);
 int lora_packet_rssi(void);
 float lora_packet_snr(void);
 void lora_close(void);

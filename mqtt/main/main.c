@@ -186,6 +186,10 @@ void task_tx(void *pvParameters)
 		ESP_LOGI(pcTaskGetName(NULL), "xMessageBufferReceive received=%d", received);
 		lora_send_packet(buf, received);
 		ESP_LOGI(pcTaskGetName(NULL), "%d byte packet sent...", received);
+		int lost = lora_packet_lost();
+		if (lost != 0) {
+			ESP_LOGW(pcTaskGetName(NULL), "%d packets lost", lost);
+		}
 	} // end while
 }
 #endif // CONFIG_SENDER

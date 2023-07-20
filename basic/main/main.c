@@ -15,6 +15,10 @@ void task_tx(void *pvParameters)
 		int send_len = sprintf((char *)buf,"Hello World!! %"PRIu32, nowTick);
 		lora_send_packet(buf, send_len);
 		ESP_LOGI(pcTaskGetName(NULL), "%d byte packet sent...", send_len);
+		int lost = lora_packet_lost();
+		if (lost != 0) {
+			ESP_LOGW(pcTaskGetName(NULL), "%d packets lost", lost);
+		}
 		vTaskDelay(pdMS_TO_TICKS(5000));
 	} // end while
 }
@@ -93,9 +97,9 @@ void app_main()
 	ESP_LOGI(pcTaskGetName(NULL), "spreading_factor=%d", sf);
 
 #if CONFIG_SENDER
-	xTaskCreate(&task_tx, "task_tx", 1024*3, NULL, 5, NULL);
+	xTaskCreate(&task_tx, "TX", 1024*3, NULL, 5, NULL);
 #endif
 #if CONFIG_RECEIVER
-	xTaskCreate(&task_rx, "task_rx", 1024*3, NULL, 5, NULL);
+	xTaskCreate(&task_rx, "RX", 1024*3, NULL, 5, NULL);
 #endif
 }
