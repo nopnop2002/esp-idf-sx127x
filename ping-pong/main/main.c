@@ -55,7 +55,7 @@ void task_primary(void *pvParameters)
 #endif // CONFIG_PRIMARY
 
 #if CONFIG_SECONDARY
-void task_seconfary(void *pvParameters)
+void task_secondary(void *pvParameters)
 {
 	ESP_LOGI(pcTaskGetName(NULL), "Start");
 	uint8_t buf[256]; // Maximum Payload size of SX1276/77/78/79 is 255
@@ -137,9 +137,9 @@ void app_main()
 	ESP_LOGI(pcTaskGetName(NULL), "spreading_factor=%d", sf);
 
 #if CONFIG_PRIMARY
-	xTaskCreate(&task_primary, "task_primary", 1024*3, NULL, 5, NULL);
+	xTaskCreate(&task_primary, "PRIMARY", 1024*3, NULL, 5, NULL);
 #endif
 #if CONFIG_SECONDARY
-	xTaskCreate(&task_seconfary, "task_secondary", 1024*3, NULL, 5, NULL);
+	xTaskCreate(&task_secondary, "SECONDARY", 1024*3, NULL, 5, NULL);
 #endif
 }
