@@ -1,14 +1,12 @@
 # mqtt Example   
 This is LoRa and MQTT gateway application.   
 ```
-Receiver
            +----------+           +----------+           +----------+           +----------+
            |          |           |          |           |          |           |          |
 ==(LoRa)==>|  SX127x  |--(SPI)--->|  ESP32   |--(MQTT)-->|  Broker  |--(MQTT)-->|Subscriber|
            |          |           |          |           |          |           |          |
            +----------+           +----------+           +----------+           +----------+
 
-Sender
            +----------+           +----------+           +----------+           +----------+
            |          |           |          |           |          |           |          |
            |Publisher |--(MQTT)-->|  Broker  |--(MQTT)-->|  ESP32   |--(SPI)--->|  SX127x  |==(LoRa)==>
