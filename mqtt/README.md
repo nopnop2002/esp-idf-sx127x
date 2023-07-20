@@ -26,7 +26,7 @@ This is LoRa and MQTT gateway application.
 
 - As the receiver   
  Receive from LoRa and publish as MQTT.   
- Subscribe using mosquitto_sub.   
+ You can use mosquitto_sub as Subscriber.   
  ```mosquitto_sub -h broker.emqx.io -p 1883 -t "/topic/lora/test"```
 
 ```
@@ -41,7 +41,7 @@ This is LoRa and MQTT gateway application.
 
 - As the sender   
  Subscribe with MQTT and send to LoRa.   
- Publish using mosquitto_pub.   
+ You can use mosquitto_pub as Publisher.   
  ```mosquitto_pub -h broker.emqx.io -p 1883 -t "/topic/lora/test" -m "test"```
 
 ```
