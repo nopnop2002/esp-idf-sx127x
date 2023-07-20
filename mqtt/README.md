@@ -37,7 +37,7 @@ This is LoRa and MQTT gateway application.
            +----------+           +----------+           +----------+           +----------+
 ```
 
-![config-mqtt-3](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/88562fb1-4ae7-45f8-8043-8c3b2cebfe51)
+![config-mqtt-3](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/f3d35df3-8579-4fee-838a-594f21a576f1)
 
 - As the sender   
  Subscribe with MQTT and send to LoRa.   
@@ -53,8 +53,7 @@ This is LoRa and MQTT gateway application.
 ```
 
 
-![config-mqtt-4](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/83f34dde-4a94-4408-95a6-d75051185797)
-
+![config-mqtt-4](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/81ef2e9e-6620-4a37-b6db-79409c825e6d)
 
 
 
