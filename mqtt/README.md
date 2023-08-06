@@ -54,7 +54,7 @@ This is LoRa and MQTT gateway application.
 
 ![config-mqtt-4](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/3f2ce0d2-6240-4437-a01c-6cbf75503942)
 
-
+### Specifying an MQTT Broker   
 MQTT broker is specified by one of the following.
 - IP address   
  ```192.168.10.20```   
