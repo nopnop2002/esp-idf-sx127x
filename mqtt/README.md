@@ -3,13 +3,13 @@ This is LoRa and MQTT gateway application.
 ```
            +----------+           +----------+           +----------+           +----------+
            |          |           |          |           |          |           |          |
-==(LoRa)==>|  SX127x  |--(SPI)--->|  ESP32   |--(MQTT)-->|  Broker  |--(MQTT)-->|Subscriber|
+           |Publisher |--(MQTT)-->|  Broker  |--(MQTT)-->|  ESP32   |--(SPI)--->|  SX127x  |==(LoRa)==>
            |          |           |          |           |          |           |          |
            +----------+           +----------+           +----------+           +----------+
 
            +----------+           +----------+           +----------+           +----------+
            |          |           |          |           |          |           |          |
-           |Publisher |--(MQTT)-->|  Broker  |--(MQTT)-->|  ESP32   |--(SPI)--->|  SX127x  |==(LoRa)==>
+==(LoRa)==>|  SX127x  |--(SPI)--->|  ESP32   |--(MQTT)-->|  Broker  |--(MQTT)-->|Subscriber|
            |          |           |          |           |          |           |          |
            +----------+           +----------+           +----------+           +----------+
 ```
@@ -23,6 +23,22 @@ This is LoRa and MQTT gateway application.
 ![config-mqtt-2](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/22c3bdb0-8ac3-4ddf-9e79-1e77fc4855d5)
 
 ## Radio Setting
+
+
+### MQTT to LoRa   
+ Subscribe with MQTT and send to LoRa.   
+ You can use mosquitto_pub as Publisher.   
+ ```mosquitto_pub -h broker.emqx.io -p 1883 -t "/topic/lora/test" -m "test"```
+
+```
+           +----------+           +----------+           +----------+           +----------+
+           |          |           |          |           |          |           |          |
+           |Publisher |--(MQTT)-->|  Broker  |--(MQTT)-->|  ESP32   |--(SPI)--->|  SX127x  |==(LoRa)==>
+           |          |           |          |           |          |           |          |
+           +----------+           +----------+           +----------+           +----------+
+```
+
+![config-mqtt-4](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/3f2ce0d2-6240-4437-a01c-6cbf75503942)
 
 ### LoRa to MQTT   
  Receive from LoRa and publish as MQTT.   
@@ -39,20 +55,6 @@ This is LoRa and MQTT gateway application.
 
 ![config-mqtt-3](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/cfd1f9f6-8a62-4457-b749-11d60e0d5ab9)
 
-### MQTT to LoRa   
- Subscribe with MQTT and send to LoRa.   
- You can use mosquitto_pub as Publisher.   
- ```mosquitto_pub -h broker.emqx.io -p 1883 -t "/topic/lora/test" -m "test"```
-
-```
-           +----------+           +----------+           +----------+           +----------+
-           |          |           |          |           |          |           |          |
-           |Publisher |--(MQTT)-->|  Broker  |--(MQTT)-->|  ESP32   |--(SPI)--->|  SX127x  |==(LoRa)==>
-           |          |           |          |           |          |           |          |
-           +----------+           +----------+           +----------+           +----------+
-```
-
-![config-mqtt-4](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/3f2ce0d2-6240-4437-a01c-6cbf75503942)
 
 ### Specifying an MQTT Broker   
 MQTT broker is specified by one of the following.
