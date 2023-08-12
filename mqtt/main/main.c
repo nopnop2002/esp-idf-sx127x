@@ -1,5 +1,12 @@
+/* The example of ESP-IDF
+ *
+ * This sample code is in the public domain.
+ */
+
 #include <stdio.h>
 #include <inttypes.h>
+#include <string.h>
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
@@ -9,15 +16,9 @@
 #include "esp_event.h"
 #include "esp_log.h"
 #include "nvs_flash.h"
-#include "esp_sntp.h"
 #include "mdns.h"
-#include "lora.h"
 
-#if (ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 0, 0))
-#define sntp_setoperatingmode esp_sntp_setoperatingmode
-#define sntp_setservername esp_sntp_setservername
-#define sntp_init esp_sntp_init
-#endif
+#include "lora.h"
 
 /* FreeRTOS event group to signal when we are connected*/
 static EventGroupHandle_t s_wifi_event_group;
@@ -184,8 +185,12 @@ void task_tx(void *pvParameters)
 	while(1) {
 		size_t received = xMessageBufferReceive(xMessageBufferRecv, buf, sizeof(buf), portMAX_DELAY);
 		ESP_LOGI(pcTaskGetName(NULL), "xMessageBufferReceive received=%d", received);
+
+		// Wait for transmission to complete
 		lora_send_packet(buf, received);
 		ESP_LOGI(pcTaskGetName(NULL), "%d byte packet sent...", received);
+
+		// Get packet loss count
 		int lost = lora_packet_lost();
 		if (lost != 0) {
 			ESP_LOGW(pcTaskGetName(NULL), "%d packets lost", lost);
@@ -202,13 +207,13 @@ void task_rx(void *pvParameters)
 	while(1) {
 		lora_receive(); // put into receive mode
 		if (lora_received()) {
-			int receive_len = lora_receive_packet(buf, sizeof(buf));
-			ESP_LOGI(pcTaskGetName(NULL), "%d byte packet received:[%.*s]", receive_len, receive_len, buf);
-			size_t sended = xMessageBufferSend(xMessageBufferTrans, buf, receive_len, portMAX_DELAY);
-			if (sended == 0) {
-				ESP_LOGE(pcTaskGetName(NULL), "xMessageBufferSend fail");
+			int rxLen = lora_receive_packet(buf, sizeof(buf));
+			ESP_LOGI(pcTaskGetName(NULL), "%d byte packet received:[%.*s]", rxLen, rxLen, buf);
+			size_t sended = xMessageBufferSend(xMessageBufferTrans, buf, rxLen, portMAX_DELAY);
+			if (sended == rxLen) {
+				ESP_LOGE(pcTaskGetName(NULL), "xMessageBufferSend fail rxLen=%d sended=%d", rxLen, sended);
 			}
-		} // end if
+		}
 		vTaskDelay(1); // Avoid WatchDog alerts
 	} // end while
 }
