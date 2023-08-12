@@ -1,8 +1,16 @@
+/* The example of ESP-IDF
+ *
+ * This sample code is in the public domain.
+ */
+
 #include <stdio.h>
 #include <inttypes.h>
+#include <string.h>
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
+
 #include "lora.h"
 
 #if CONFIG_SENDER
@@ -32,9 +40,9 @@ void task_rx(void *pvParameters)
 	while(1) {
 		lora_receive(); // put into receive mode
 		if (lora_received()) {
-			int receive_len = lora_receive_packet(buf, sizeof(buf));
-			ESP_LOGI(pcTaskGetName(NULL), "%d byte packet received:[%.*s]", receive_len, receive_len, buf);
-		} // end if
+			int rxLen = lora_receive_packet(buf, sizeof(buf));
+			ESP_LOGI(pcTaskGetName(NULL), "%d byte packet received:[%.*s]", rxLen, rxLen, buf);
+		}
 		vTaskDelay(1); // Avoid WatchDog alerts
 	} // end while
 }
