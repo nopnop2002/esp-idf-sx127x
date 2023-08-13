@@ -45,7 +45,7 @@ You can use curl as HTTP Client.
 
 Communicate with Arduino Environment.   
 Run this sketch.   
-ArduinoCode\Ra01S_RX   
+ArduinoCode\LoRaReceiver   
 
 
 ### LoRa to HTTP
@@ -66,7 +66,7 @@ You can use nc(netcat) as HTTP Server.
 
 Communicate with Arduino Environment.   
 Run this sketch.   
-ArduinoCode\Ra01S_TX   
+ArduinoCode\LoRaSender   
 
 
 ### Specifying an HTTP Server   
