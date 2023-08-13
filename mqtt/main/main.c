@@ -210,7 +210,7 @@ void task_rx(void *pvParameters)
 			int rxLen = lora_receive_packet(buf, sizeof(buf));
 			ESP_LOGI(pcTaskGetName(NULL), "%d byte packet received:[%.*s]", rxLen, rxLen, buf);
 			size_t sended = xMessageBufferSend(xMessageBufferTrans, buf, rxLen, portMAX_DELAY);
-			if (sended == rxLen) {
+			if (sended != rxLen) {
 				ESP_LOGE(pcTaskGetName(NULL), "xMessageBufferSend fail rxLen=%d sended=%d", rxLen, sended);
 			}
 		}
