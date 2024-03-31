@@ -2,6 +2,29 @@
 Send data from primary to secondary.   
 In the secondary, the characters are converted and sent back.   
 
+- ESP32 is Primary
+```
++-----------+            +-----------+           +-----------+
+|           |            |           |           |           |
+| Secondary |<==(LoRa)===|  SX127x   |<--(SPI)---|   ESP32   |
+|           |            |           |           |  Primary  |
+|           |            |           |           |           |
+|           |===(LoRa)==>|           |---(SPI)-->|           |
+|           |            |           |           |           |
++-----------+            +-----------+           +-----------+
+```
+
+- ESP32 is Secondary 
+```
++-----------+            +-----------+           +-----------+
+|           |            |           |           |           |
+|  Primary  |===(LoRa)==>|  SX127x   |---(SPI)-->|   ESP32   |
+|           |            |           |           | Secondary |
+|           |            |           |           |           |
+|           |<==(LoRa)===|           |<--(SPI)---|           |
+|           |            |           |           |           |
++-----------+            +-----------+           +-----------+
+```
 
 # Configuration   
 ![config-top](https://user-images.githubusercontent.com/6020549/152316024-73f1aab9-fb2a-4729-8683-fbcdae3dcc71.jpg)
