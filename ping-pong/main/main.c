@@ -44,7 +44,7 @@ void task_primary(void *pvParameters)
 				TickType_t currentTick = xTaskGetTickCount();
 				TickType_t diffTick = currentTick - startTick;
 				ESP_LOGI(pcTaskGetName(NULL), "%d byte packet received:[%.*s]", rxLen, rxLen, buf);
-				ESP_LOGI(pcTaskGetName(NULL), "Response time is %"PRIu32" MillSecs", diffTick * portTICK_PERIOD_MS);
+				ESP_LOGI(pcTaskGetName(NULL), "Response time is %"PRIu32" millisecond", diffTick * portTICK_PERIOD_MS);
 				waiting = false;
 			}
 			TickType_t currentTick = xTaskGetTickCount();
