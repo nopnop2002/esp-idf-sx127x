@@ -72,8 +72,7 @@ Therefore, if the following three parameters are the same, they can communicate 
 - Spreading Factor (= SF)   
 
 # Datasheet
-Everything is in the datasheet.   
-https://github.com/jgromes/RadioLib/files/8646997/DS_SX1276-7-8-9_W_APP_V7.pdf   
+Datasheet is [here](https://github.com/jgromes/RadioLib/files/8646997/DS_SX1276-7-8-9_W_APP_V7.pdf).   
 
 
 # Reference
