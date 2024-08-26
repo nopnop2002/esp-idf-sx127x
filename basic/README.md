@@ -5,7 +5,7 @@ Simple send or receive.
 ![config-top](https://user-images.githubusercontent.com/6020549/152315401-0a3ea44f-d045-4b93-b988-b9ce9451f935.jpg)
 ![config-basic-1](https://user-images.githubusercontent.com/6020549/153731778-d7c3e699-5afa-4673-8de0-da9ec8ea6808.jpg)
 
-When using a transceiver other than 169MHz / 433MHz / 470MHz / 866MHz / 915MHz:   
+When using a transceiver other than 169MHz / 433MHz / 470MHz / 866MHz / 915MHz, you can specify any frequency.   
 ![config-basic-2](https://user-images.githubusercontent.com/6020549/153731782-dd217bd5-b37c-4d31-b6e8-297d4372ce3c.jpg)
 
 When using advanced settings:   
