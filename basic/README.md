@@ -3,6 +3,8 @@ Simple send or receive.
 
 # Configuration   
 ![config-top](https://user-images.githubusercontent.com/6020549/152315401-0a3ea44f-d045-4b93-b988-b9ce9451f935.jpg)
+
+You can choose the frequency of 169MHz / 433MHz / 470MHz / 866MHz / 915MHz.   
 ![config-basic-1](https://user-images.githubusercontent.com/6020549/153731778-d7c3e699-5afa-4673-8de0-da9ec8ea6808.jpg)
 
 When using a transceiver other than 169MHz / 433MHz / 470MHz / 866MHz / 915MHz, you can specify any frequency.   
