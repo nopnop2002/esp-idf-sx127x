@@ -31,11 +31,7 @@ When using Arduino, use Ra01S-Ping.
 # Configuration   
 ![config-top](https://user-images.githubusercontent.com/6020549/152316024-73f1aab9-fb2a-4729-8683-fbcdae3dcc71.jpg)
 ![config-pingpong-1](https://user-images.githubusercontent.com/6020549/153731874-ca03ed3c-aba0-4273-b0b7-bff611a570c5.jpg)
-
-When using a transceiver other than 169MHz / 433MHz / 470MHz / 866MHz / 915MHz:   
 ![config-pingpong-2](https://user-images.githubusercontent.com/6020549/153731877-2a72fcca-69ab-4822-8be3-1042ff8e092b.jpg)
-
-When using advanced settings:   
 ![config-pingpong-3](https://user-images.githubusercontent.com/6020549/153731879-9cfc7705-b7f4-4b2e-9237-cf2eccc54d51.jpg)
 
 # Screen Shot of Primary side   
