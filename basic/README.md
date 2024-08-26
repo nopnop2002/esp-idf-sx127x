@@ -8,7 +8,7 @@ Simple send or receive.
 When using a transceiver other than 169MHz / 433MHz / 470MHz / 866MHz / 915MHz, you can specify any frequency.   
 ![config-basic-2](https://user-images.githubusercontent.com/6020549/153731782-dd217bd5-b37c-4d31-b6e8-297d4372ce3c.jpg)
 
-When using advanced settings:   
+When using advanced settings, you can specify these parameters.   
 ![config-basic-3](https://user-images.githubusercontent.com/6020549/153731783-da342804-9be9-4b16-9908-4c7aa69419d4.jpg)
 
 LoRa mode has the following three communication parameters.   
