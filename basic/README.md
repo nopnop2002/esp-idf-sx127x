@@ -4,6 +4,9 @@ Simple send or receive.
 # Configuration   
 ![config-top](https://user-images.githubusercontent.com/6020549/152315401-0a3ea44f-d045-4b93-b988-b9ce9451f935.jpg)
 
+You can select sender or receiver.   
+![config-basic-0](https://github.com/user-attachments/assets/430d1bda-9e44-49f6-9173-68ae49d0d781)
+
 You can choose the frequency of 169MHz / 433MHz / 470MHz / 866MHz / 915MHz.   
 ![config-basic-1](https://user-images.githubusercontent.com/6020549/153731778-d7c3e699-5afa-4673-8de0-da9ec8ea6808.jpg)
 
