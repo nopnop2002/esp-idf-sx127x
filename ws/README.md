@@ -30,6 +30,8 @@ This is LoRa and WebSocket gateway application.
 Subscribe with WebSocket and send to LoRa.   
 ESP32 acts as Web Server.   
 You can use ws-client.py as Web Client.   
+You need to install websockets.   
+
 
 ```
            +-----------+              +-----------+              +-----------+
@@ -50,6 +52,7 @@ ArduinoCode\LoRaReceiver
 Receive from LoRa and publish as WebSocket.   
 ESP32 acts as Web Client.   
 You can use ws-server.py as Web Server.   
+You need to install websocket-server.   
 
 ```
            +-----------+              +-----------+              +-----------+
