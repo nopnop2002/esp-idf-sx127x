@@ -1,0 +1,76 @@
+# WebSocket Example   
+This is LoRa and WebSocket gateway application.   
+```
+           +-----------+              +-----------+              +-----------+
+           |           |              |           |              |           |
+           | Web Client|-(WebSocket)->|   ESP32   |----(SPI)---->|  SX127x   |==(LoRa)==>
+           |           |              |           |              |           |
+           +-----------+              +-----------+              +-----------+
+
+           +-----------+              +-----------+              +-----------+
+           |           |              |           |              |           |
+==(LoRa)==>|  SX127x   |----(SPI)---->|   ESP32   |-(WebSocket)->| Web Server|
+           |           |              |           |              |           |
+           +-----------+              +-----------+              +-----------+
+```
+
+
+
+# Configuration
+![config-top](https://github.com/user-attachments/assets/ab7b2141-48e6-423d-98d2-7730eb17bc90)
+![config-app](https://github.com/user-attachments/assets/8c513633-4144-4fc8-bddb-9f8c346d9980)
+
+## WiFi Setting
+
+![config-wifi](https://github.com/user-attachments/assets/51bf839d-8d2f-41ab-b3a7-dbea09836ce0)
+
+## Radio Setting
+
+### WebSocket to LoRa
+Subscribe with WebSocket and send to LoRa.   
+ESP32 acts as Web Server.   
+You can use ws-client.py as Web Client.   
+
+```
+           +-----------+              +-----------+              +-----------+
+           |           |              |           |              |           |
+           | Web Client|-(WebSocket)->|   ESP32   |----(SPI)---->|  SX127x   |==(LoRa)==>
+           |           |              |           |              |           |
+           +-----------+              +-----------+              +-----------+
+```
+
+![config-radio-1](https://github.com/user-attachments/assets/636cd326-3ea5-4df6-9cbd-6d84d62d1be1)
+
+Communicate with Arduino Environment.   
+Run this sketch.   
+ArduinoCode\LoRaReceiver   
+
+
+### LoRa to WebSocket
+Receive from LoRa and publish as WebSocket.   
+ESP32 acts as Web Client.   
+You can use ws-server.py as Web Server.   
+
+```
+           +-----------+              +-----------+              +-----------+
+           |           |              |           |              |           |
+==(LoRa)==>|  SX127x   |----(SPI)---->|   ESP32   |-(WebSocket)->| Web Server|
+           |           |              |           |              |           |
+           +-----------+              +-----------+              +-----------+
+```
+
+![config-radio-2](https://github.com/user-attachments/assets/088ad4e7-6411-47c7-b110-adfbacede18f)
+
+Communicate with Arduino Environment.   
+Run this sketch.   
+ArduinoCode\LoRaSender   
+
+
+### Specifying an WebSocket Server   
+You can specify your WebSocket Server in one of the following ways:   
+- IP address   
+ ```192.168.10.20```   
+- mDNS host name   
+ ```http-server.local```   
+
+
