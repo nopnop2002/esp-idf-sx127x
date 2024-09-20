@@ -223,19 +223,18 @@ void task_rx(void *pvParameters)
 		if (lora_received()) {
 			int rxLen = lora_receive_packet(buf, sizeof(buf));
 			ESP_LOGI(pcTaskGetName(NULL), "%d byte packet received:[%.*s]", rxLen, rxLen, buf);
+
 			size_t spacesAvailable = xMessageBufferSpacesAvailable( xMessageBufferTrans );
 			ESP_LOGI(pcTaskGetName(NULL), "spacesAvailable=%d", spacesAvailable);
-			if (spacesAvailable < rxLen*2) {
-				ESP_LOGW(pcTaskGetName(NULL), "xMessageBuffer available less than %d", rxLen*2);
-			} else {
-				size_t sended = xMessageBufferSend(xMessageBufferTrans, buf, rxLen, portMAX_DELAY);
-				if (sended != rxLen) {
-					ESP_LOGE(pcTaskGetName(NULL), "xMessageBufferSend fail rxLen=%d sended=%d", rxLen, sended);
-				}
+			size_t sended = xMessageBufferSend(xMessageBufferTrans, buf, rxLen, 100);
+			if (sended != rxLen) {
+				ESP_LOGE(pcTaskGetName(NULL), "xMessageBufferSend fail rxLen=%d sended=%d", rxLen, sended);
+				break;
 			}
 		}
 		vTaskDelay(1); // Avoid WatchDog alerts
 	} // end while
+	vTaskDelete(NULL);
 }
 #endif // CONFIG_RECEIVER
 
@@ -327,11 +326,11 @@ void app_main()
     ESP_LOGI(TAG, "cparam0=[%s]", cparam0);
 
 #if CONFIG_SENDER
-	xTaskCreate(&task_tx, "TX", 1024*3, NULL, 5, NULL);
+	xTaskCreate(&task_tx, "TX", 1024*4, NULL, 5, NULL);
 	xTaskCreate(&http_server, "HTTP_SERVER", 1024*4, (void *)cparam0, 5, NULL);
 #endif
 #if CONFIG_RECEIVER
-	xTaskCreate(&task_rx, "RX", 1024*3, NULL, 5, NULL);
+	xTaskCreate(&task_rx, "RX", 1024*4, NULL, 5, NULL);
 	xTaskCreate(&http_client, "HTTP_CLIENT", 1024*4, NULL, 5, NULL);
 #endif
 
