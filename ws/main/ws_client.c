@@ -167,7 +167,10 @@ void ws_client(void *pvParameters)
 				if (!isprint(c)) printable = false;
 			}
 			ESP_LOGI(TAG, "printable=%d", printable);
-			if (!printable) continue;
+			if (!printable) {
+				ESP_LOGW(TAG, "Contains characters that cannot be printed");
+				continue;
+			}
 
 			ESP_LOGI(TAG, "xMessageBufferReceive buffer=[%.*s]",received, buffer);
 			if (esp_websocket_client_is_connected(client)) {
