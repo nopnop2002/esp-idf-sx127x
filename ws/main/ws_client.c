@@ -54,33 +54,19 @@ static void websocket_event_handler(void *handler_args, esp_event_base_t base, i
 {
 	esp_websocket_event_data_t *data = (esp_websocket_event_data_t *)event_data;
 	SOCKET_t *socketBuf = data->user_context;
-	ESP_LOGD(TAG, "taskHandle=0x%x", (unsigned int)socketBuf->taskHandle);
+	ESP_LOGI(TAG, "taskHandle=0x%x event_id=0x%"PRIx32, (unsigned int)socketBuf->taskHandle, event_id);
 	switch (event_id) {
 	case WEBSOCKET_EVENT_CONNECTED:
 		ESP_LOGI(TAG, "WEBSOCKET_EVENT_CONNECTED");
-		xTaskNotify( socketBuf->taskHandle, event_id, eSetValueWithOverwrite );
 		break;
 	case WEBSOCKET_EVENT_DISCONNECTED:
 		ESP_LOGI(TAG, "WEBSOCKET_EVENT_DISCONNECTED");
-		xTaskNotify( socketBuf->taskHandle, event_id, eSetValueWithOverwrite );
 		break;
 	case WEBSOCKET_EVENT_DATA:
 		ESP_LOGI(TAG, "WEBSOCKET_EVENT_DATA");
 		ESP_LOGI(TAG, "Received opcode=0x%x", data->op_code);
 		if (data->op_code == WS_TRANSPORT_OPCODES_TEXT) {
-			ESP_LOGI(TAG, "Received text data->data_len=%d", data->data_len);
-			ESP_LOGI(TAG, "Total payload length=%d, data_len=%d, current payload offset=%d", data->payload_len, data->data_len, data->payload_offset);
-			ESP_LOG_BUFFER_HEXDUMP(TAG, data->data_ptr, data->data_len, ESP_LOG_INFO);
-			socketBuf->data_len = data->data_len;
-			socketBuf->op_code = data->op_code;
-			socketBuf->payload_len = data->payload_len;
-			socketBuf->payload_offset = data->payload_offset;
-			for(int i=0;i<data->data_len;i++) {
-				socketBuf->data[i] = data->data_ptr[i];
-				socketBuf->data[i+1] = 0;
-			}
-			ESP_LOGI(TAG, "xTaskNotify event_id=0x%"PRIx32, event_id);
-			xTaskNotify( socketBuf->taskHandle, event_id, eSetValueWithOverwrite );
+			ESP_LOGD(TAG, "Received text");
 		} else if (data->op_code == WS_TRANSPORT_OPCODES_CLOSE) {
 			ESP_LOGW(TAG, "Received closed message with text");
 		} else if (data->op_code == WS_TRANSPORT_OPCODES_PING) {
@@ -93,6 +79,20 @@ static void websocket_event_handler(void *handler_args, esp_event_base_t base, i
 			ESP_LOGE(TAG, "Received unknown message");
 		}
 
+		if (data->op_code == WS_TRANSPORT_OPCODES_TEXT) {
+			ESP_LOGI(TAG, "Received text data->data_len=%d", data->data_len);
+			ESP_LOGI(TAG, "Total payload length=%d, data_len=%d, current payload offset=%d", data->payload_len, data->data_len, data->payload_offset);
+			ESP_LOG_BUFFER_HEXDUMP(TAG, data->data_ptr, data->data_len, ESP_LOG_INFO);
+			socketBuf->data_len = data->data_len;
+			socketBuf->op_code = data->op_code;
+			socketBuf->payload_len = data->payload_len;
+			socketBuf->payload_offset = data->payload_offset;
+			for(int i=0;i<data->data_len;i++) {
+				socketBuf->data[i] = data->data_ptr[i];
+				socketBuf->data[i+1] = 0;
+			}
+			xTaskNotify( socketBuf->taskHandle, event_id, eSetValueWithOverwrite );
+		}
 		break;
 	case WEBSOCKET_EVENT_ERROR:
 		ESP_LOGI(TAG, "WEBSOCKET_EVENT_ERROR");
@@ -135,30 +135,18 @@ void ws_client(void *pvParameters)
 
 	// Wait for server connection
 	esp_websocket_client_start(client);
-	int retry = 0;
 	while(1) {
 		if (esp_websocket_client_is_connected(client)) break;
+		ESP_LOGW(TAG, "waiting for server to start");
 		vTaskDelay(100);
-		retry++;
-		if (retry == 10) {
-			ESP_LOGE(TAG, "Server connection time out");
-			vTaskDelete(NULL);
-		}
 	}
 	ESP_LOGI(TAG, "Connected to %s...", websocket_cfg.uri);
 	
-	while(1) {
-		uint32_t event_id = ulTaskNotifyTake( pdTRUE, 100 );
-		ESP_LOGI(TAG, "ulTaskNotifyTake=0x%"PRIx32, event_id);
-		if (event_id == WEBSOCKET_EVENT_DATA) break;
-	}
-
 	char buffer[256]; // Maximum Payload size of SX1261/62/68 is 255
 	while (1) {
 		size_t received = xMessageBufferReceive(xMessageBufferTrans, buffer, sizeof(buffer), portMAX_DELAY);
 		ESP_LOGI(TAG, "xMessageBufferReceive received=%d", received);
 		if (received > 0) {
-
 			// WebSockets can only handle printable characters.
 			// Therefore, determine whether the characters are printable.
 			bool printable = true;
@@ -174,16 +162,20 @@ void ws_client(void *pvParameters)
 
 			ESP_LOGI(TAG, "xMessageBufferReceive buffer=[%.*s]",received, buffer);
 			if (esp_websocket_client_is_connected(client)) {
-				ESP_LOGD(TAG, "esp_websocket_client_send_text");
+				ESP_LOGI(TAG, "esp_websocket_client_send_text");
 				int sended = esp_websocket_client_send_text(client, buffer, received, 100);
 				if (sended != received) {
 					ESP_LOGE(TAG," esp_websocket_client_send_text fail sended=%d received=%d", sended, received);
 					break;
 				}
-				// Wait for response
-				uint32_t event_id = ulTaskNotifyTake( pdTRUE, portMAX_DELAY );
+
+				// Wait for response from server
+				uint32_t event_id = ulTaskNotifyTake( pdTRUE, 100 );
 				ESP_LOGI(TAG, "ulTaskNotifyTake=0x%"PRIx32, event_id);
-				if (event_id != WEBSOCKET_EVENT_DATA) break;
+				if (event_id != WEBSOCKET_EVENT_DATA) {
+					ESP_LOGE(TAG, "No response from server");
+					break;
+				}
 			} else {
 				ESP_LOGE(TAG, "Not connected server");
 				break;
@@ -191,8 +183,8 @@ void ws_client(void *pvParameters)
 		} else {
 			 ESP_LOGE(TAG, "xMessageBufferReceive fail");
 			 break;
-		} // end while
-	}
+		}
+	} // end while
 
 	// Stop connection
 	// stops ws client and closes TCP connection directly with sending close frames.

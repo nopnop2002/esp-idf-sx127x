@@ -108,12 +108,12 @@ esp_err_t start_server(int port)
 
 void ws_server(void *pvParameters)
 {
-    char *task_parameter = (char *)pvParameters;
-    ESP_LOGI(TAG, "Start task_parameter=%s", task_parameter);
-    char url[64];
-    int port = CONFIG_WEB_SERVER_PORT;
-    sprintf(url, "ws://%s:%d", task_parameter, port);
-    ESP_LOGI(TAG, "Starting HTTP server on %s", url);
-    ESP_ERROR_CHECK(start_server(port));
-    vTaskDelete(NULL);
+	char *task_parameter = (char *)pvParameters;
+	ESP_LOGI(TAG, "Start task_parameter=%s", task_parameter);
+	char url[64];
+	int port = CONFIG_WEB_SERVER_PORT;
+	sprintf(url, "ws://%s:%d", task_parameter, port);
+	ESP_LOGI(TAG, "Starting HTTP server on %s", url);
+	ESP_ERROR_CHECK(start_server(port));
+	vTaskDelete(NULL);
 }
