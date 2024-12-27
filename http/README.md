@@ -41,7 +41,7 @@ You can use curl as HTTP Client.
            +-----------+           +-----------+           +-----------+
 ```
 
-![config-radio-1](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/e7a882c4-64ec-4d98-ae50-5b655e4c3fd1)
+![config-radio-1](https://github.com/user-attachments/assets/df15b3d0-1d80-4f81-bec1-8b5b3b59314a)
 
 Communicate with Arduino Environment.   
 Run this sketch.   
@@ -62,7 +62,7 @@ You can use nc(netcat) as HTTP Server.
            +-----------+           +-----------+           +-----------+
 ```
 
-![config-radio-2](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/aaa0f1a3-2e89-4e7f-b5b2-a8cec65a0f16)
+![config-radio-2](https://github.com/user-attachments/assets/b4df6c8f-8cf4-4c40-93f0-265ae1951ef3)
 
 Communicate with Arduino Environment.   
 Run this sketch.   
