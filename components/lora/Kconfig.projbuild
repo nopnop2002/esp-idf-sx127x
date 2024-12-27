@@ -65,7 +65,7 @@ menu "LoRa Configuration"
 	config SF_RATE
 		depends on ADVANCED
 		int "Spreading Factor"
-		range 5 12
+		range 6 12
 		default 7
 		help
 			Spreading Factor.
