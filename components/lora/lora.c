@@ -619,15 +619,17 @@ lora_send_packet(uint8_t *buf, int size)
       vTaskDelay(2);
 #endif
    int loop = 0;
+   int max_retry = size/10;
+   if (max_retry < 10) max_retry = 10;
    while(1) {
       int irq = lora_read_reg(REG_IRQ_FLAGS);
       ESP_LOGD(TAG, "lora_read_reg=0x%x", irq);
       if ((irq & IRQ_TX_DONE_MASK) == IRQ_TX_DONE_MASK) break;
       loop++;
-      if (loop == 10) break;
+      if (loop == max_retry) break;
       vTaskDelay(2);
    }
-   if (loop == 10) {
+   if (loop == max_retry) {
       __send_packet_lost++;
       ESP_LOGE(TAG, "lora_send_packet Fail");
    }
