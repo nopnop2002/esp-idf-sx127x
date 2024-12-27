@@ -35,7 +35,7 @@ When using Arduino, use Ra01S-Ping.
 # Screen Shot of Primary side   
 ![pingpong-1](https://user-images.githubusercontent.com/6020549/152316130-784d49eb-a5d9-4858-af54-0979af1948c0.jpg)
 
-# Response time with varying BW (Unit=MillSecs)   
+# Response time with varying Signal Bandwidth(BW) (Unit=MillSecs)   
 ESP32@160/433MHz/CR=1/SF=7   
 |Payload|BW=1(10.4KHz)|BW=3(20.8KHz)|BW=5(41.7KHz)|BW=6(62.5KHz)|BW=7(125KHz)|BW=8(250KHz)|BW=9(500KHz)|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
