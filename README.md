@@ -69,7 +69,7 @@ However, as the communication speed increases, the reception sensitivity deterio
 1001:500 kHz   
 In the lower band (169MHz), signal bandwidths 8&9 are not supported.   
 
-- SF rate (expressed as a base-2 logarithm)   
+- Spreading Factor (expressed as a base-2 logarithm)   
 6:64 chips / symbol   
 7:128 chips / symbol(Default)   
 8:256 chips / symbol   
