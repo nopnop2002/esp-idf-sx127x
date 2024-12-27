@@ -37,9 +37,6 @@ When using Arduino, use Ra01S-Ping.
 
 # Response time with varying BW (Unit=MillSecs)   
 ESP32@160/433MHz/CR=1/SF=7   
-|Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=500KHz|
-|:-:|:-:|:-:|:-:|:-:|
-|31Bytes|330|190|120|80|
-|63Bytes|510|280|160|100|
-|127Bytes|900|470|260|160|
-|255Bytes|1680|880|480|290|
+|Payload|BW=1(10.4KHz)|BW=3(20.8KHz)|BW=5(41.7KHz)|BW=6(62.5KHz)|BW=7(125KHz)|BW=8(250KHz)|BW=9(500KHz)|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|255Bytes|9650|4840|2450|1640|840|440|240|
