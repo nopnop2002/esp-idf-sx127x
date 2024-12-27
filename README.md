@@ -125,31 +125,21 @@ The larger the number, the better the correction rate, but the amount of informa
 (No effect on maximum reception sensitivity)   
 You can set whether to use Optimaise for each CDR, and enabling it will improve the correction rate, but will reduce communication speed.   
 
-# Throughput (Unit=Bytes/Sec)   
-It depends on the payload size.   
-|Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=500KHz|
-|:-:|:-:|:-:|:-:|:-:|
-|31Bytes|183.11|345.98|618.76|621.24|
-|63Bytes|253.52|422.54|698.87|1254.93|
-|127Bytes|284.44|556.53|964.06|1809.06|
-|255Bytes|306.34|579.15|1072.33|1835.85|
+# Throughput with varying Signal Bandwidth(BW) (Unit=Bytes/Sec)   
+ESP32@160/433MHz/CR=1/SF=7   
+|BW=1(10.4KHz)|BW=3(20.8KHz)|BW=5(41.7KHz)|BW=6(62.5KHz)|BW=7(125KHz)|BW=8(250KHz)|BW=9(500KHz)|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|52.74|110.80|220.49|329.24|618.93|1153.85|2031.87|
 
-# Packet Lost Rate (Unit=Percent)   
-It depends on the payload size.   
-0 is all packet received.   
-2 indicates that the two packets did not arrive.   
-|Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=500KHz|
-|:-:|:-:|:-:|:-:|:-:|
-|31Bytes|0|0|0|0|
-|63Bytes|0|0|1|1|
-|127Bytes|0|0|2|1|
-|255Bytes|0|1|0|0|
+# Throughput with varying Error coding rate(CR) (Unit=Bytes/Sec)   
+ESP32@160/433MHz/BW=7/SF=7   
+|CR=1(4/5)|CR=2(4/6)|CR=3(4/7)|CR=4(4/8)|
+|:-:|:-:|:-:|:-:|
+|618.93|618.93|619.68|619.68|
 
 # Datasheet
 Datasheet is [here](https://github.com/jgromes/RadioLib/files/8646997/DS_SX1276-7-8-9_W_APP_V7.pdf).   
 
-
 # Reference
-
 https://github.com/nopnop2002/esp-idf-sx126x
 
