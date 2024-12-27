@@ -43,6 +43,6 @@ ESP32@160/433MHz/CR=1/SF=7
 
 # Response time with varying Error coding rate(CR) (Unit=MillSecs)   
 ESP32@160/433MHz/BW=7/SF=7   
-|Payload|CR=1(4/5)|CR=1(4/6)|CR=2(4/7|CR=4(4/8)|
+|Payload|CR=1(4/5)|CR=2(4/6)|CR=3(4/7)|CR=4(4/8)|
 |:-:|:-:|:-:|:-:|:-:|
 |255Bytes|840|840|840|840|
