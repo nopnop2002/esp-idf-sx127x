@@ -36,7 +36,7 @@ When using Arduino, use Ra01S-Ping.
 ![pingpong-1](https://user-images.githubusercontent.com/6020549/152316130-784d49eb-a5d9-4858-af54-0979af1948c0.jpg)
 
 # Response time with varying BW (Unit=MillSecs)   
-ESP32@160/CR=1/SF=7   
+ESP32@160/433MHz/CR=1/SF=7   
 |Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=500KHz|
 |:-:|:-:|:-:|:-:|:-:|
 |31Bytes|330|190|120|80|
