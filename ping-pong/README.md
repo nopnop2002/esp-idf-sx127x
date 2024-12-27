@@ -30,9 +30,7 @@ When using Arduino, use Ra01S-Ping.
 
 # Configuration   
 ![config-top](https://user-images.githubusercontent.com/6020549/152316024-73f1aab9-fb2a-4729-8683-fbcdae3dcc71.jpg)
-![config-pingpong-1](https://user-images.githubusercontent.com/6020549/153731874-ca03ed3c-aba0-4273-b0b7-bff611a570c5.jpg)
-![config-pingpong-2](https://user-images.githubusercontent.com/6020549/153731877-2a72fcca-69ab-4822-8be3-1042ff8e092b.jpg)
-![config-pingpong-3](https://user-images.githubusercontent.com/6020549/153731879-9cfc7705-b7f4-4b2e-9237-cf2eccc54d51.jpg)
+![config-pingpong-1](https://github.com/user-attachments/assets/c9b339cf-528a-4712-b32d-7d1da3d5521e)
 
 # Screen Shot of Primary side   
 ![pingpong-1](https://user-images.githubusercontent.com/6020549/152316130-784d49eb-a5d9-4858-af54-0979af1948c0.jpg)
