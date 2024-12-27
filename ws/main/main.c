@@ -270,15 +270,9 @@ void app_main()
 		}
 	}
 
-#if CONFIG_169MHZ
-	ESP_LOGI(pcTaskGetName(NULL), "Frequency is 169MHz");
-	lora_set_frequency(169e6); // 169MHz
-#elif CONFIG_433MHZ
+#if CONFIG_433MHZ
 	ESP_LOGI(pcTaskGetName(NULL), "Frequency is 433MHz");
 	lora_set_frequency(433e6); // 433MHz
-#elif CONFIG_470MHZ
-	ESP_LOGI(pcTaskGetName(NULL), "Frequency is 470MHz");
-	lora_set_frequency(470e6); // 470MHz
 #elif CONFIG_866MHZ
 	ESP_LOGI(pcTaskGetName(NULL), "Frequency is 866MHz");
 	lora_set_frequency(866e6); // 866MHz

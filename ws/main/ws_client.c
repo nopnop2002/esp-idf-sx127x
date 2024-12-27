@@ -20,7 +20,7 @@
 #include "freertos/message_buffer.h"
 #include "esp_event.h"
 #include "esp_log.h"
-#include "esp_transport_ws.h"
+//#include "esp_transport_ws.h"
 #include "esp_websocket_client.h"
 
 static const char *TAG = "CLIENT";

@@ -41,7 +41,7 @@ https://github.com/python-websockets/websockets
            +-----------+              +-----------+              +-----------+
 ```
 
-![config-radio-1](https://github.com/user-attachments/assets/636cd326-3ea5-4df6-9cbd-6d84d62d1be1)
+![config-radio-1](https://github.com/user-attachments/assets/50296104-d749-427f-9c61-a8e36a7a4431)
 
 Communicate with Arduino Environment.   
 Run this sketch.   
@@ -63,7 +63,7 @@ https://github.com/Pithikos/python-websocket-server
            +-----------+              +-----------+              +-----------+
 ```
 
-![config-radio-2](https://github.com/user-attachments/assets/088ad4e7-6411-47c7-b110-adfbacede18f)
+![config-radio-2](https://github.com/user-attachments/assets/da7bb160-0932-47a3-96b5-b072d0861c6f)
 
 Communicate with Arduino Environment.   
 Run this sketch.   
