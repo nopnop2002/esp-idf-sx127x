@@ -52,21 +52,22 @@ The communication speed is faster when BW is large, CR is small, and SF is small
 However, as the communication speed increases, the reception sensitivity deteriorates, so select the one that best suits your needs.   
 
 - Error coding rate   
-001:4/5(Default)   
-010:4/6   
-011:4/7   
-100:4/8   
+1:4/5(Default)   
+2:4/6   
+3:4/7   
+4:4/8   
 
 - Signal Bandwidth   
-0001:10.4 kHz   
-0010:15.6 kHz   
-0011:20.8kHz   
-0100:31.25 kHz   
-0101:41.7 kHz   
-0110:62.5 kHz   
-0111:125 kHz(Default)   
-1000:250 kHz   
-1001:500 kHz   
+0:7.8 kHz   
+1:10.4 kHz   
+2:15.6 kHz   
+3:20.8kHz   
+4:31.25 kHz   
+5:41.7 kHz   
+6:62.5 kHz   
+7:125 kHz(Default)   
+8:250 kHz   
+9:500 kHz   
 In the lower band (169MHz), signal bandwidths 8&9 are not supported.   
 
 - Spreading Factor (expressed as a base-2 logarithm)   
