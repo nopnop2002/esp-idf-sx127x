@@ -62,7 +62,7 @@ You can use nc(netcat) as HTTP Server.
            +-----------+           +-----------+           +-----------+
 ```
 
-![config-radio-2](https://github.com/user-attachments/assets/b4df6c8f-8cf4-4c40-93f0-265ae1951ef3)
+![config-radio-2](https://github.com/user-attachments/assets/ae1e7140-77bf-4149-b5f5-a9b88fcb8c1a)
 
 Communicate with Arduino Environment.   
 Run this sketch.   
