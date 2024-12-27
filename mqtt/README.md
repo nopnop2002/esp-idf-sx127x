@@ -17,10 +17,10 @@ This is LoRa and MQTT gateway application.
 
 # Configuration   
 ![config-top](https://user-images.githubusercontent.com/6020549/152316024-73f1aab9-fb2a-4729-8683-fbcdae3dcc71.jpg)
-![config-mqtt-1](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/0de324fa-6e1b-4721-b56b-0a7e1483a36d)
+![config-app](https://github.com/user-attachments/assets/16a98416-0797-441d-b84b-efd6a036854a)
 
 ## WiFi Setting
-![config-mqtt-2](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/22c3bdb0-8ac3-4ddf-9e79-1e77fc4855d5)
+![config-wifi](https://github.com/user-attachments/assets/95e73a2a-e40f-4b76-9451-43894dc01ad9)
 
 ## Radio Setting
 
@@ -38,7 +38,7 @@ This is LoRa and MQTT gateway application.
            +----------+           +----------+           +----------+           +----------+
 ```
 
-![config-mqtt-4](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/3f2ce0d2-6240-4437-a01c-6cbf75503942)
+![config-radio-1](https://github.com/user-attachments/assets/f0fdb99e-7ffa-4160-a7cd-999050501556)
 
 Communicate with Arduino Environment.   
 Run this sketch.   
@@ -57,7 +57,7 @@ ArduinoCode\LoRaReceiver
            +----------+           +----------+           +----------+           +----------+
 ```
 
-![config-mqtt-3](https://github.com/nopnop2002/esp-idf-sx127x/assets/6020549/cfd1f9f6-8a62-4457-b749-11d60e0d5ab9)
+![config-radio-2](https://github.com/user-attachments/assets/b1539ff0-7a37-4d03-9b3a-4c02c0128718)
 
 Communicate with Arduino Environment.   
 Run this sketch.   
@@ -74,4 +74,9 @@ You can specify your MQTT broker in one of the following ways:
 
 You can use this as broker.   
 https://github.com/nopnop2002/esp-idf-mqtt-broker
+
+### Secure Option
+Specifies the username and password if the server requires a password when connecting.   
+[Here's](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-the-mosquitto-mqtt-messaging-broker-on-debian-10) how to install and secure the Mosquitto MQTT messaging broker on Debian 10.   
+![config-radio-3](https://github.com/user-attachments/assets/7318534c-895f-4e5e-ae90-e875da8e92f8)
 

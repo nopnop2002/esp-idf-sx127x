@@ -37,8 +37,6 @@ MessageBufferHandle_t xMessageBufferRecv;
 
 // The total number of bytes (not single messages) the message buffer will be able to hold at any one time.
 size_t xBufferSizeBytes = 1024;
-// The size, in bytes, required to hold each item in the message,
-size_t xItemSize = 256;
 
 static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data)
 {
@@ -257,15 +255,9 @@ void app_main()
 		}
 	}
 
-#if CONFIG_169MHZ
-	ESP_LOGI(pcTaskGetName(NULL), "Frequency is 169MHz");
-	lora_set_frequency(169e6); // 169MHz
-#elif CONFIG_433MHZ
+#if CONFIG_433MHZ
 	ESP_LOGI(pcTaskGetName(NULL), "Frequency is 433MHz");
 	lora_set_frequency(433e6); // 433MHz
-#elif CONFIG_470MHZ
-	ESP_LOGI(pcTaskGetName(NULL), "Frequency is 470MHz");
-	lora_set_frequency(470e6); // 470MHz
 #elif CONFIG_866MHZ
 	ESP_LOGI(pcTaskGetName(NULL), "Frequency is 866MHz");
 	lora_set_frequency(866e6); // 866MHz
