@@ -34,11 +34,52 @@ I used a raw ESP-C3-13 to verify that these pins could be used as SPI clocks.
 # Configuration for Transceiver   
 
 ![config-lora-1](https://user-images.githubusercontent.com/6020549/152313802-d88ed3ab-dff5-4fe5-a05f-742c2e6e0aa4.jpg)
-![config-lora-2](https://user-images.githubusercontent.com/6020549/168179087-8cba5e92-4519-461a-934e-bf05853c6959.jpg)
 
+## Frequency used   
+![config-lora-2](https://github.com/user-attachments/assets/91c4b8b8-e18c-4dbb-b880-40d2cd460272)
 
-# SPI BUS selection   
-![config-lora-3](https://user-images.githubusercontent.com/6020549/168179130-7f69187a-a44d-45b1-8d39-ca09205c1a4a.jpg)
+## Using a transceiver other than 433MHz / 866MHz / 915MHz   
+![config-lora-3](https://github.com/user-attachments/assets/62984a47-681e-48f4-a408-d8429fceea58)
+
+## advanced settings   
+![config-lora-4](https://github.com/user-attachments/assets/513f7bca-63ea-4045-a517-8de054fbb804)
+
+LoRa mode has the following three communication parameters.   
+1.Error Coding Rate (= CR)   
+2.Signal Bandwidth (= BW)   
+3.Spreading Factor (= SF)   
+The communication speed is faster when BW is large, CR is small, and SF is small.   
+However, as the communication speed increases, the reception sensitivity deteriorates, so select the one that best suits your needs.   
+
+- Error coding rate   
+001:4/5(Default)   
+010:4/6   
+011:4/7   
+100:4/8   
+
+- Signal Bandwidth   
+0001:10.4 kHz   
+0010:15.6 kHz   
+0011:20.8kHz   
+0100:31.25 kHz   
+0101:41.7 kHz   
+0110:62.5 kHz   
+0111:125 kHz(Default)   
+1000:250 kHz   
+1001:500 kHz   
+In the lower band (169MHz), signal bandwidths 8&9 are not supported.   
+
+- SF rate (expressed as a base-2 logarithm)   
+6:64 chips / symbol   
+7:128 chips / symbol(Default)   
+8:256 chips / symbol   
+9:512 chips / symbol   
+10:1024 chips / symbol   
+11:2048 chips / symbol   
+12:4096 chips / symbol   
+
+## SPI BUS selection   
+![config-lora-5](https://github.com/user-attachments/assets/f3dcf76e-1bf4-4c05-98ac-f9174f52820e)
 
 The ESP32 series has three SPI BUSs.   
 SPI1_HOST is used for communication with Flash memory.   
@@ -83,6 +124,26 @@ CDR (CodingRate) sets the level of error correction rate.
 The larger the number, the better the correction rate, but the amount of information per packet increases.   
 (No effect on maximum reception sensitivity)   
 You can set whether to use Optimaise for each CDR, and enabling it will improve the correction rate, but will reduce communication speed.   
+
+# Throughput (Unit=Bytes/Sec)   
+It depends on the payload size.   
+|Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=500KHz|
+|:-:|:-:|:-:|:-:|:-:|
+|31Bytes|183.11|345.98|618.76|621.24|
+|63Bytes|253.52|422.54|698.87|1254.93|
+|127Bytes|284.44|556.53|964.06|1809.06|
+|255Bytes|306.34|579.15|1072.33|1835.85|
+
+# Packet Lost Rate (Unit=Percent)   
+It depends on the payload size.   
+0 is all packet received.   
+2 indicates that the two packets did not arrive.   
+|Payload Size|BW=62.5KHz|BW=125KHz|BW=250KHz|BW=500KHz|
+|:-:|:-:|:-:|:-:|:-:|
+|31Bytes|0|0|0|0|
+|63Bytes|0|0|1|1|
+|127Bytes|0|0|2|1|
+|255Bytes|0|1|0|0|
 
 # Datasheet
 Datasheet is [here](https://github.com/jgromes/RadioLib/files/8646997/DS_SX1276-7-8-9_W_APP_V7.pdf).   
