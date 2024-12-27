@@ -75,11 +75,13 @@
 
 #define TAG "LORA"
 
-static spi_device_handle_t __spi;
-
-static int __implicit;
-static long __frequency;
-static int __send_packet_lost = 0;
+static spi_device_handle_t _spi;
+static int _implicit;
+static long _frequency;
+static int _send_packet_lost = 0;
+static int _cr = 0;
+static int _sbw = 0;
+static int _sf = 0;
 
 // use spi_device_transmit
 #define SPI_TRANSMIT 1
@@ -108,9 +110,9 @@ lora_write_reg(int reg, int val)
 
    //gpio_set_level(CONFIG_CS_GPIO, 0);
 #if SPI_TRANSMIT
-   spi_device_transmit(__spi, &t);
+   spi_device_transmit(_spi, &t);
 #else
-   spi_device_polling_transmit(__spi, &t);
+   spi_device_polling_transmit(_spi, &t);
 #endif
    //gpio_set_level(CONFIG_CS_GPIO, 1);
 }
@@ -140,9 +142,9 @@ lora_write_reg_buffer(int reg, uint8_t *val, int len)
 
    //gpio_set_level(CONFIG_CS_GPIO, 0);
 #if SPI_TRANSMIT
-   spi_device_transmit(__spi, &t);
+   spi_device_transmit(_spi, &t);
 #else
-   spi_device_polling_transmit(__spi, &t);
+   spi_device_polling_transmit(_spi, &t);
 #endif
    //gpio_set_level(CONFIG_CS_GPIO, 1);
    free(out);
@@ -168,9 +170,9 @@ lora_read_reg(int reg)
 
    //gpio_set_level(CONFIG_CS_GPIO, 0);
 #if SPI_TRANSMIT
-   spi_device_transmit(__spi, &t);
+   spi_device_transmit(_spi, &t);
 #else
-   spi_device_polling_transmit(__spi, &t);
+   spi_device_polling_transmit(_spi, &t);
 #endif
    //gpio_set_level(CONFIG_CS_GPIO, 1);
    return in[1];
@@ -203,9 +205,9 @@ lora_read_reg_buffer(int reg, uint8_t *val, int len)
 
    //gpio_set_level(CONFIG_CS_GPIO, 0);
 #if SPI_TRANSMIT
-   spi_device_transmit(__spi, &t);
+   spi_device_transmit(_spi, &t);
 #else
-   spi_device_polling_transmit(__spi, &t);
+   spi_device_polling_transmit(_spi, &t);
 #endif
    //gpio_set_level(CONFIG_CS_GPIO, 1);
    for (int i=0;i<len;i++) {
@@ -234,7 +236,7 @@ lora_reset(void)
 void 
 lora_explicit_header_mode(void)
 {
-   __implicit = 0;
+   _implicit = 0;
    lora_write_reg(REG_MODEM_CONFIG_1, lora_read_reg(REG_MODEM_CONFIG_1) & 0xfe);
 }
 
@@ -246,7 +248,7 @@ lora_explicit_header_mode(void)
 void 
 lora_implicit_header_mode(int size)
 {
-   __implicit = 1;
+   _implicit = 1;
    lora_write_reg(REG_MODEM_CONFIG_1, lora_read_reg(REG_MODEM_CONFIG_1) | 0x01);
    lora_write_reg(REG_PAYLOAD_LENGTH, size);
 }
@@ -301,7 +303,7 @@ lora_set_tx_power(int level)
 void 
 lora_set_frequency(long frequency)
 {
-   __frequency = frequency;
+   _frequency = frequency;
 
    uint64_t frf = ((uint64_t)frequency << 19) / 32000000;
 
@@ -329,6 +331,7 @@ lora_set_spreading_factor(int sf)
    }
 
    lora_write_reg(REG_MODEM_CONFIG_2, (lora_read_reg(REG_MODEM_CONFIG_2) & 0x0f) | ((sf << 4) & 0xf0));
+   _sf = sf;
 }
 
 /**
@@ -419,6 +422,7 @@ lora_set_bandwidth(int sbw)
 {
    if (sbw < 10) {
       lora_write_reg(REG_MODEM_CONFIG_1, (lora_read_reg(REG_MODEM_CONFIG_1) & 0x0f) | (sbw << 4));
+      _sbw = sbw;
    }
 }
 
@@ -449,6 +453,7 @@ lora_set_coding_rate(int denominator)
 
    int cr = denominator - 4;
    lora_write_reg(REG_MODEM_CONFIG_1, (lora_read_reg(REG_MODEM_CONFIG_1) & 0xf1) | (cr << 1));
+   _cr = cr;
 }
 
 /**
@@ -549,8 +554,8 @@ lora_init(void)
       .flags = 0,
       .pre_cb = NULL
    };
-   //ret = spi_bus_add_device(VSPI_HOST, &dev, &__spi);
-   ret = spi_bus_add_device(HOST_ID, &dev, &__spi);
+   //ret = spi_bus_add_device(VSPI_HOST, &dev, &_spi);
+   ret = spi_bus_add_device(HOST_ID, &dev, &_spi);
    assert(ret == ESP_OK);
 
    /*
@@ -619,8 +624,17 @@ lora_send_packet(uint8_t *buf, int size)
       vTaskDelay(2);
 #endif
    int loop = 0;
-   int max_retry = size/10;
-   if (max_retry < 10) max_retry = 10;
+   int max_retry;
+   if (_sbw < 3) {
+      max_retry = 250;
+   } else if (_sbw < 5) {
+      max_retry = 125;
+   } else if (_sbw < 7) {
+      max_retry = 80;
+   } else {
+      max_retry = 40;
+   }
+   ESP_LOGD(TAG, "_sbw=%d max_retry=%d", _sbw, max_retry);
    while(1) {
       int irq = lora_read_reg(REG_IRQ_FLAGS);
       ESP_LOGD(TAG, "lora_read_reg=0x%x", irq);
@@ -630,7 +644,7 @@ lora_send_packet(uint8_t *buf, int size)
       vTaskDelay(2);
    }
    if (loop == max_retry) {
-      __send_packet_lost++;
+      _send_packet_lost++;
       ESP_LOGE(TAG, "lora_send_packet Fail");
    }
    lora_write_reg(REG_IRQ_FLAGS, IRQ_TX_DONE_MASK);
@@ -658,7 +672,7 @@ lora_receive_packet(uint8_t *buf, int size)
    /*
     * Find packet size.
     */
-   if (__implicit) len = lora_read_reg(REG_PAYLOAD_LENGTH);
+   if (_implicit) len = lora_read_reg(REG_PAYLOAD_LENGTH);
    else len = lora_read_reg(REG_RX_NB_BYTES);
 
    /*
@@ -703,7 +717,7 @@ lora_get_irq(void)
 int 
 lora_packet_lost(void)
 {
-   return (__send_packet_lost);
+   return (_send_packet_lost);
 }
 
 /**
@@ -712,7 +726,7 @@ lora_packet_lost(void)
 int 
 lora_packet_rssi(void)
 {
-   return (lora_read_reg(REG_PKT_RSSI_VALUE) - (__frequency < 868E6 ? 164 : 157));
+   return (lora_read_reg(REG_PKT_RSSI_VALUE) - (_frequency < 868E6 ? 164 : 157));
 }
 
 
@@ -735,7 +749,7 @@ lora_close(void)
 //   close(__spi);  FIXME: end hardware features after lora_close
 //   close(__cs);
 //   close(__rst);
-//   __spi = -1;
+//   _spi = -1;
 //   __cs = -1;
 //   __rst = -1;
 }
