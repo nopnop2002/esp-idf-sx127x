@@ -203,8 +203,8 @@ void app_main()
 	int cr = 1;
 	int bw = 7;
 	int sf = 7;
-#if CONFIF_ADVANCED
-	cr = CONFIG_CODING_RATE
+#if CONFIG_ADVANCED
+	cr = CONFIG_CODING_RATE;
 	bw = CONFIG_BANDWIDTH;
 	sf = CONFIG_SF_RATE;
 #endif
