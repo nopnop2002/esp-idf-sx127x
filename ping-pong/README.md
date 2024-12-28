@@ -36,7 +36,7 @@ When using Arduino, use Ra01S-Ping.
 ![pingpong-1](https://user-images.githubusercontent.com/6020549/152316130-784d49eb-a5d9-4858-af54-0979af1948c0.jpg)
 
 # Response time
-Time from Start to End.   
+Time from Start to Finish.   
 ```
 +-----------+           +-----------+            +-----------+           +-----------+
 |           |Start      |           |            |           |           |           |
