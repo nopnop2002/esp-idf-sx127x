@@ -7,7 +7,7 @@ When using Arduino, use Ra01S-Pong.
 ```
 +-----------+            +-----------+           +-----------+
 |           |            |           |           |           |
-|   ESP32   |===(LoRa)==>|  SX126x   |---(SPI)-->| Secondary |
+|   ESP32   |===(LoRa)==>|  SX127x   |---(SPI)-->| Secondary |
 |  Primary  |            |           |           |           |
 |           |            |           |           |           |
 |           |<==(LoRa)===|           |<--(SPI)---|           |
@@ -40,7 +40,7 @@ Time from Start to End.
 ```
 +-----------+            +-----------+           +-----------+
 |           |Start       |           |           |           |
-|   ESP32   |===(LoRa)==>|  SX126x   |---(SPI)-->|  ESP32    |
+|   ESP32   |===(LoRa)==>|  SX127x   |---(SPI)-->|  ESP32    |
 |  Primary  |            |           |           | Secondary |
 |           |End         |           |           |           |
 |           |<==(LoRa)===|           |<--(SPI)---|           |
