@@ -41,7 +41,7 @@ Time from Start to End.
 +-----------+           +-----------+            +-----------+           +-----------+
 |           |Start      |           |            |           |           |           |
 |  Primary  |===(SPI)==>|  SX127x   |---(LoRa)-->|  SX127x   |===(SPI)==>| Secondary |
-|   ESP32   |           |           |            |           |           |           |
+|   ESP32   |           |           |            |           |           |   ESP32   |
 |           |Finish     |           |            |           |           |           |
 |           |<==(SPI)===|           |<--(LoRa)---|           |<==(SPI)===|           |
 |           |           |           |            |           |           |           |
