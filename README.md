@@ -128,15 +128,15 @@ You can set whether to use Optimaise for each CDR, and enabling it will improve 
 
 # Throughput with varying Signal Bandwidth(BW) (Unit=Bytes/Sec)   
 ESP32@160/433MHz/CR=1/SF=7   
-|BW=1(10.4KHz)|BW=3(20.8KHz)|BW=5(41.7KHz)|BW=6(62.5KHz)|BW=7(125KHz)|BW=8(250KHz)|BW=9(500KHz)|
+|BW=0(7.8KHz)|BW=2(15.6KHz)|BW=4(31.25KHz)|BW=6(62.5KHz)|BW=7(125KHz)|BW=8(250KHz)|BW=9(500KHz)|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|52.74|110.80|220.49|329.24|618.93|1153.85|2031.87|
+|37.50|83.18|165.75|296.32|618.93|1153.85|2031.87|
 
 # Throughput with varying Error coding rate(CR) (Unit=Bytes/Sec)   
 ESP32@160/433MHz/BW=7/SF=7   
 |CR=1(4/5)|CR=2(4/6)|CR=3(4/7)|CR=4(4/8)|
 |:-:|:-:|:-:|:-:|
-|618.93|618.93|619.68|619.68|
+|618.93|543.13|468.32|410.63|
 
 # Datasheet
 Datasheet is [here](https://github.com/jgromes/RadioLib/files/8646997/DS_SX1276-7-8-9_W_APP_V7.pdf).   
