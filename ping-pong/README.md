@@ -20,8 +20,8 @@ When using Arduino, use Ra01S-Ping.
 ```
 +-----------+           +-----------+            +-----------+           +-----------+
 |           |           |           |            |           |           |           |
-|           |===(SPI)==>|  SX127x   |---(LoRa)-->|  SX127x   |===(SPI)==>| Secondary |
-|  Primary  |           |           |            |           |           |  ESP32    |
+|  Primary  |===(SPI)==>|  SX127x   |---(LoRa)-->|  SX127x   |===(SPI)==>| Secondary |
+|           |           |           |            |           |           |   ESP32   |
 |           |           |           |            |           |           |           |
 |           |<==(SPI)===|           |<--(LoRa)---|           |<==(SPI)===|           |
 |           |           |           |            |           |           |           |
