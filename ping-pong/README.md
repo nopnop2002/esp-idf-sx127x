@@ -35,13 +35,26 @@ When using Arduino, use Ra01S-Ping.
 # Screen Shot of Primary side   
 ![pingpong-1](https://user-images.githubusercontent.com/6020549/152316130-784d49eb-a5d9-4858-af54-0979af1948c0.jpg)
 
-# Response time with varying Signal Bandwidth(BW) (Unit=MillSecs)   
+# Response time
+Time from Start to End.   
+```
++-----------+            +-----------+           +-----------+
+|           |Start       |           |           |           |
+|   ESP32   |===(LoRa)==>|  SX126x   |---(SPI)-->|  ESP32    |
+|  Primary  |            |           |           | Secondary |
+|           |End         |           |           |           |
+|           |<==(LoRa)===|           |<--(SPI)---|           |
+|           |            |           |           |           |
++-----------+            +-----------+           +-----------+
+```
+
+### With varying Signal Bandwidth(BW) (Unit=MillSecs)   
 ESP32@160/433MHz/CR=1/SF=7   
 |Payload|BW=0(7.8KHz)|BW=2(15.6KHz)|BW=4(31.25KHz)|BW=6(62.5KHz)|BW=7(125KHz)|BW=8(250KHz)|BW=9(500KHz)|
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |255Bytes|12850|6440|3240|1640|840|440|240|
 
-# Response time with varying Error coding rate(CR) (Unit=MillSecs)   
+### With varying Error coding rate(CR) (Unit=MillSecs)   
 ESP32@160/433MHz/BW=7/SF=7   
 |Payload|CR=1(4/5)|CR=2(4/6)|CR=3(4/7)|CR=4(4/8)|
 |:-:|:-:|:-:|:-:|:-:|
