@@ -443,15 +443,17 @@ lora_get_bandwidth(void)
 
 /**
  * Set coding rate 
- * @param denominator 5-8, Denominator for the coding rate 4/x
+ * @param cr Coding Rate(1 to 4)
  */ 
 void 
-lora_set_coding_rate(int denominator)
+lora_set_coding_rate(int cr)
 {
-   if (denominator < 5) denominator = 5;
-   else if (denominator > 8) denominator = 8;
+   //if (denominator < 5) denominator = 5;
+   //else if (denominator > 8) denominator = 8;
 
-   int cr = denominator - 4;
+   //int cr = denominator - 4;
+   if (cr < 1) cr = 1;
+   else if (cr > 4) cr = 4;
    lora_write_reg(REG_MODEM_CONFIG_1, (lora_read_reg(REG_MODEM_CONFIG_1) & 0xf1) | (cr << 1));
    _cr = cr;
 }
@@ -625,14 +627,16 @@ lora_send_packet(uint8_t *buf, int size)
 #endif
    int loop = 0;
    int max_retry;
-   if (_sbw < 3) {
+   if (_sbw < 2) {
+      max_retry = 500;
+   } else if (_sbw < 4) {
       max_retry = 250;
-   } else if (_sbw < 5) {
+   } else if (_sbw < 6) {
       max_retry = 125;
-   } else if (_sbw < 7) {
-      max_retry = 80;
+   } else if (_sbw < 8) {
+      max_retry = 60;
    } else {
-      max_retry = 40;
+      max_retry = 30;
    }
    ESP_LOGD(TAG, "_sbw=%d max_retry=%d", _sbw, max_retry);
    while(1) {

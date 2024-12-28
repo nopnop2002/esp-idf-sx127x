@@ -16,7 +16,7 @@ void lora_set_dio_mapping(int dio, int mode);
 int lora_get_dio_mapping(int dio);
 void lora_set_bandwidth(int sbw);
 int lora_get_bandwidth(void);
-void lora_set_coding_rate(int denominator);
+void lora_set_coding_rate(int cr);
 int lora_get_coding_rate(void);
 void lora_set_preamble_length(long length);
 long lora_get_preamble_length(void);
