@@ -139,6 +139,33 @@ You can set whether to use Optimaise for each CDR, and enabling it will improve 
 	|:-:|:-:|:-:|:-:|
 	|618.93|543.13|468.32|410.63|
 
+
+# How to use this component in your project   
+Create idf_component.yml in the same directory as main.c.   
+```
+YourProject --+-- CMakeLists.txt
+              +-- main --+-- main.c
+                         +-- CMakeLists.txt
+                         +-- idf_component.yml
+```
+
+Contents of idf_component.yml.
+```
+dependencies:
+  nopnop2002/sx127x:
+    path: components/lora/
+    git: https://github.com/nopnop2002/esp-idf-sx127x.git
+```
+
+When you build a projects esp-idf will automaticly fetch repository to managed_components dir and link with your code.   
+```
+YourProject --+-- CMakeLists.txt
+              +-- main --+-- main.c
+              |          +-- CMakeLists.txt
+              |          +-- idf_component.yml
+              +-- managed_components ----- nopnop2002__sx127x
+```
+
 # Datasheet
 Datasheet is [here](https://github.com/jgromes/RadioLib/files/8646997/DS_SX1276-7-8-9_W_APP_V7.pdf).   
 
