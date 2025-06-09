@@ -1,0 +1,4 @@
+#
+# ESP-MQTT Configurations
+#
+CONFIG_MQTT_PROTOCOL_5=y
