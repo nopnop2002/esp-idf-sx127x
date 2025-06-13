@@ -89,6 +89,7 @@ void task_secondary(void *pvParameters)
 
 void app_main()
 {
+	// Initialize LoRa
 	if (lora_init() == 0) {
 		ESP_LOGE(pcTaskGetName(NULL), "Does not recognize the module");
 		while(1) {
