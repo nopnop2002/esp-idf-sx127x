@@ -27,7 +27,7 @@ void task_tx(void *pvParameters)
 		if (lost != 0) {
 			ESP_LOGW(pcTaskGetName(NULL), "%d packets lost", lost);
 		}
-		vTaskDelay(pdMS_TO_TICKS(5000));
+		vTaskDelay(pdMS_TO_TICKS(1000));
 	} // end while
 }
 #endif // CONFIG_SENDER
@@ -50,6 +50,7 @@ void task_rx(void *pvParameters)
 
 void app_main()
 {
+	// Initialize LoRa
 	if (lora_init() == 0) {
 		ESP_LOGE(pcTaskGetName(NULL), "Does not recognize the module");
 		while(1) {
