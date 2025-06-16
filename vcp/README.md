@@ -45,7 +45,7 @@ We can buy this breakout on Ebay or AliExpress.
 
 
 # Configuration
-![Image](https://github.com/user-attachments/assets/703b368c-d80c-47e7-a5bf-87021857238a)
+![Image](https://github.com/user-attachments/assets/f7865e77-a7a3-4082-ba1d-4ce738cc177b)
 ![Image](https://github.com/user-attachments/assets/00a49fb9-03f3-48c9-a77e-8283c0699986)
 
 
