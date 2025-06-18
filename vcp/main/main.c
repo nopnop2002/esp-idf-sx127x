@@ -22,7 +22,7 @@ MessageBufferHandle_t xMessageBufferRx;
 // The total number of bytes (not messages) the message buffer will be able to hold at any one time.
 size_t xBufferSizeBytes = 1024;
 // The size, in bytes, required to hold each item in the message,
-size_t xItemSize = 255; // Maximum Payload size of SX1261/62/68 is 255
+size_t xItemSize = 255; // Maximum Payload size of SX1276/77/78/79 is 255
 
 #if CONFIG_SENDER
 void task_tx(void *pvParameters)
@@ -134,5 +134,5 @@ void app_main()
 	xTaskCreate(&task_rx, "RX", 1024*3, NULL, 5, NULL);
 #endif
 	// Start CDC_ACM_VCP
-	xTaskCreate(cdc_acm_vcp_task, "CDC_ACM_VCP", 1024*4, NULL, 5, NULL);
+	xTaskCreate(&cdc_acm_vcp_task, "CDC_ACM_VCP", 1024*4, NULL, 5, NULL);
 }
