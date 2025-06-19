@@ -42,8 +42,8 @@ void task_tx(void *pvParameters)
 		}
 	} // end while
 
-    // never reach here
-    vTaskDelete( NULL );
+	// never reach here
+	vTaskDelete( NULL );
 }
 #endif // CONFIG_SENDER
 
@@ -69,7 +69,7 @@ void task_rx(void *pvParameters)
 		vTaskDelay(1); // Avoid WatchDog alerts
 	} // end while
 
-    vTaskDelete( NULL );
+	vTaskDelete( NULL );
 }
 #endif // CONFIG_RECEIVER
 
