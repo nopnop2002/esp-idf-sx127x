@@ -17,7 +17,7 @@
 void task_tx(void *pvParameters)
 {
 	ESP_LOGI(pcTaskGetName(NULL), "Start");
-	uint8_t buf[256]; // Maximum Payload size of SX1276/77/78/79 is 255
+	uint8_t buf[255]; // Maximum Payload size of SX1276/77/78/79 is 255
 	while(1) {
 		TickType_t nowTick = xTaskGetTickCount();
 		int send_len = sprintf((char *)buf,"Hello World!! %"PRIu32, nowTick);
@@ -29,6 +29,9 @@ void task_tx(void *pvParameters)
 		}
 		vTaskDelay(pdMS_TO_TICKS(1000));
 	} // end while
+
+	// never reach here
+	vTaskDelete( NULL );
 }
 #endif // CONFIG_SENDER
 
@@ -36,7 +39,7 @@ void task_tx(void *pvParameters)
 void task_rx(void *pvParameters)
 {
 	ESP_LOGI(pcTaskGetName(NULL), "Start");
-	uint8_t buf[256]; // Maximum Payload size of SX1276/77/78/79 is 255
+	uint8_t buf[255]; // Maximum Payload size of SX1276/77/78/79 is 255
 	while(1) {
 		lora_receive(); // put into receive mode
 		if (lora_received()) {
@@ -45,6 +48,9 @@ void task_rx(void *pvParameters)
 		}
 		vTaskDelay(1); // Avoid WatchDog alerts
 	} // end while
+
+	// never reach here
+	vTaskDelete( NULL );
 }
 #endif // CONFIG_RECEIVER
 
