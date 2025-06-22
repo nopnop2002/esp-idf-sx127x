@@ -42,7 +42,7 @@ I used a raw ESP-C3-13 to verify that these pins could be used as SPI clocks.
 ![config-lora-3](https://github.com/user-attachments/assets/62984a47-681e-48f4-a408-d8429fceea58)
 
 ## advanced settings   
-![config-lora-4](https://github.com/user-attachments/assets/513f7bca-63ea-4045-a517-8de054fbb804)
+![Image](https://github.com/user-attachments/assets/1aa25d32-5d32-4831-b305-d5b56ad55eb2)
 
 LoRa mode has the following three communication parameters.   
 1.Error Coding Rate (= CR)   
