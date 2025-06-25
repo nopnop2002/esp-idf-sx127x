@@ -44,9 +44,7 @@ You can use curl as HTTP Client.
 ![config-radio-1](https://github.com/user-attachments/assets/df15b3d0-1d80-4f81-bec1-8b5b3b59314a)
 
 Communicate with Arduino Environment.   
-Run this sketch.   
-ArduinoCode\LoRaReceiver   
-
+I tested it with [this](https://github.com/nopnop2002/esp-idf-sx127x/tree/main/ArduinoCode/LoRaReceiver).   
 
 ### LoRa to HTTP
 Receive from LoRa and send to HTTP.   
@@ -65,9 +63,7 @@ You can use nc(netcat) as HTTP Server.
 ![config-radio-2](https://github.com/user-attachments/assets/ae1e7140-77bf-4149-b5f5-a9b88fcb8c1a)
 
 Communicate with Arduino Environment.   
-Run this sketch.   
-ArduinoCode\LoRaSender   
-
+I tested it with [this](https://github.com/nopnop2002/esp-idf-sx127x/tree/main/ArduinoCode/LoRaSender).   
 
 ### Specifying an HTTP Server   
 You can specify your HTTP Server in one of the following ways:   
