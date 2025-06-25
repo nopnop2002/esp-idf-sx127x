@@ -58,9 +58,7 @@ You can use this script as USB Serial Host for writing.
 ![config-radio-1](https://github.com/user-attachments/assets/6e4b1fa8-b54e-48cb-b001-2a71aef22556)
 
 Communicate with Arduino Environment.   
-Run this sketch.   
-ArduinoCode\Ra01S_RX   
-
+I tested it with [this](https://github.com/nopnop2002/esp-idf-sx127x/tree/main/ArduinoCode/LoRaReceiver).   
 
 ### LoRa to USB
 Receive from LoRa and send to USB.   
@@ -79,9 +77,7 @@ You can use this script as USB Serial Host for reading.
 ![config-radio-2](https://github.com/user-attachments/assets/b0ced381-2ec4-445c-9f97-6adf455c8bc1)
 
 Communicate with Arduino Environment.   
-Run this sketch.   
-ArduinoCode\Ra01S_TX   
-
+I tested it with [this](https://github.com/nopnop2002/esp-idf-sx127x/tree/main/ArduinoCode/LoRaSender).   
 
 # Using Windows Terminal Software
 When you connect the USB cable to the USB port on your Windows machine and build the firmware, a new COM port will appear.   
