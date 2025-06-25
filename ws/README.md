@@ -45,9 +45,7 @@ https://github.com/python-websockets/websockets
 ![config-radio-1](https://github.com/user-attachments/assets/50296104-d749-427f-9c61-a8e36a7a4431)
 
 Communicate with Arduino Environment.   
-Run this sketch.   
-ArduinoCode\LoRaReceiver   
-
+I tested it with [this](https://github.com/nopnop2002/esp-idf-sx127x/tree/main/ArduinoCode/LoRaReceiver).   
 
 ### LoRa to WebSocket
 Receive from LoRa and send to WebSocket.   
@@ -67,9 +65,7 @@ https://github.com/Pithikos/python-websocket-server
 ![config-radio-2](https://github.com/user-attachments/assets/da7bb160-0932-47a3-96b5-b072d0861c6f)
 
 Communicate with Arduino Environment.   
-Run this sketch.   
-ArduinoCode\LoRaSender   
-
+I tested it with [this](https://github.com/nopnop2002/esp-idf-sx127x/tree/main/ArduinoCode/LoRaSender).   
 
 ### Specifying an WebSocket Server   
 You can specify your WebSocket Server in one of the following ways:   
