@@ -41,8 +41,7 @@ Set the wireless communication direction.
 ```
 
 Communicate with Arduino Environment.   
-Run this sketch.   
-ArduinoCode\LoRaReceiver   
+I tested it with [this](https://github.com/nopnop2002/esp-idf-sx127x/tree/main/ArduinoCode/LoRaReceiver).   
 
 ### LoRa to MQTT   
  Receive from LoRa and publish as MQTT.   
@@ -58,8 +57,7 @@ ArduinoCode\LoRaReceiver
 ```
 
 Communicate with Arduino Environment.   
-Run this sketch.   
-ArduinoCode\LoRaSender   
+I tested it with [this](https://github.com/nopnop2002/esp-idf-sx127x/tree/main/ArduinoCode/LoRaSender).   
 
 ## Broker Setting
 Set the information of your MQTT broker.   
