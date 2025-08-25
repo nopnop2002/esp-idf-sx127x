@@ -14,7 +14,7 @@ This project demonstrates how to use TxDone or RxDone.
 ![Image](https://github.com/user-attachments/assets/c679652c-8957-4142-97df-22c361d89653)
 
 # Wirering
-Add a wire to DIO1.   
+Add a wire to DIO0.   
 |SX127X||ESP32|ESP32-S2/S3|ESP32-C2/C3/C6|
 |:-:|:-:|:-:|:-:|:-:|
 |RST|--|GPIO16|GPIO38|GPIO3|
@@ -24,10 +24,10 @@ Add a wire to DIO1.
 |NSS|--|GPIO15|GPIO34|GPIO7|
 |GND|--|GND|GND|GND|
 |VCC|--|3.3V|3.3V|3.3V|
-|DIO1|--|GPIO21|GPIO1|GPIO1|
+|DIO0|--|GPIO21|GPIO1|GPIO1|
 
 # How to use interrupt
-When TxDone occurs, DIO1 turns ON.   
+When TxDone occurs, DIO0 turns ON.   
 ```
     // Set up an interrupt for SPI transactions
     int dio = 0;
@@ -35,7 +35,7 @@ When TxDone occurs, DIO1 turns ON.
     lora_set_dio_mapping(dio, mode)
 ```
 
-When RxDone occurs, DIO1 turns ON.   
+When RxDone occurs, DIO0 turns ON.   
 ```
     // Set up an interrupt for SPI transactions
     int dio = 0;
