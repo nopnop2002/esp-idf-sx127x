@@ -4,7 +4,7 @@ I use [this](https://github.com/sandeepmistry/arduino-LoRa).
 Unfortunately, this library has incomplete mode switching.   
 Therefore, Ping/Pong does not work reliably.   
 
-# Wirering
+# Wiring
 
 |SX127x||ATmega328||
 |:-:|:-:|:-:|:-:

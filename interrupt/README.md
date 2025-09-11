@@ -13,7 +13,7 @@ This project demonstrates how to use TxDone or RxDone.
 ![Image](https://github.com/user-attachments/assets/381a395e-e04f-4fdd-9579-f8353d44245b)
 ![Image](https://github.com/user-attachments/assets/c679652c-8957-4142-97df-22c361d89653)
 
-# Wirering
+# Wiring
 Add a wire to DIO0.   
 |SX127X||ESP32|ESP32-S2/S3|ESP32-C2/C3/C6|
 |:-:|:-:|:-:|:-:|:-:|
