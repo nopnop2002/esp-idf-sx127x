@@ -770,3 +770,12 @@ lora_dump_registers(void)
    printf("\n");
 }
 
+void lora_enable_ldro(void)
+{
+   lora_write_reg(REG_MODEM_CONFIG_3, lora_read_reg(REG_MODEM_CONFIG_3) | 0x08);
+}
+
+void lora_disable_ldro(void)
+{
+   lora_write_reg(REG_MODEM_CONFIG_3, lora_read_reg(REG_MODEM_CONFIG_3) & 0xf7);
+}
