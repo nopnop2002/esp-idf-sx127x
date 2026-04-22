@@ -34,7 +34,7 @@ When using Arduino, use Ra01S-Ping.
 ### Build as primary   
 ![config-pingpong-1](https://github.com/user-attachments/assets/c9b339cf-528a-4712-b32d-7d1da3d5521e)
 
-### Built as a secondary   
+### Build as a secondary   
 <img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/ec362eed-8c87-4a7b-9642-f5f68957d98e" />
 
 # Screen Shot of Primary side   
