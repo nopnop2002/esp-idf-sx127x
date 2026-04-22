@@ -3,7 +3,7 @@ Send data from primary to secondary.
 In the secondary, the characters are converted and sent back.   
 
 - ESP32 is Primary   
-When using Arduino, use Ra01S-Pong.   
+When using Arduino environment as a Secondary, use LoRaPong in ArduinoCode.   
 ```
 +-----------+           +-----------+            +-----------+           +-----------+
 |           |           |           |            |           |           |           |
@@ -16,7 +16,7 @@ When using Arduino, use Ra01S-Pong.
 ```
 
 - ESP32 is Secondary   
-When using Arduino, use Ra01S-Ping.   
+When using Arduino environment as a Primary, use LoRaPing in ArduinoCode.   
 ```
 +-----------+           +-----------+            +-----------+           +-----------+
 |           |           |           |            |           |           |           |
