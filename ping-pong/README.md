@@ -31,7 +31,7 @@ When using Arduino, use Ra01S-Ping.
 # Configuration   
 ![config-top](https://user-images.githubusercontent.com/6020549/152316024-73f1aab9-fb2a-4729-8683-fbcdae3dcc71.jpg)
 
-### Build as primary   
+### Build as a primary   
 ![config-pingpong-1](https://github.com/user-attachments/assets/c9b339cf-528a-4712-b32d-7d1da3d5521e)
 
 ### Build as a secondary   
