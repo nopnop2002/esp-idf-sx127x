@@ -1,7 +1,12 @@
-/* The example of ESP-IDF
- *
- * This sample code is in the public domain.
- */
+/*
+	tinyusb cdc Example
+
+	This example code is in the Public Domain (or CC0 licensed, at your option.)
+
+	Unless required by applicable law or agreed to in writing, this
+	software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+	CONDITIONS OF ANY KIND, either express or implied.
+*/
 
 #include <stdio.h>
 #include <inttypes.h>
@@ -11,7 +16,8 @@
 #include "freertos/task.h"
 #include "freertos/message_buffer.h"
 #include "tinyusb.h"
-#include "tusb_cdc_acm.h"
+#include "tinyusb_default_config.h"
+#include "tinyusb_cdc_acm.h"
 #include "esp_log.h"
 
 #include "lora.h"
@@ -148,25 +154,26 @@ void usb_tx(void *pvParameters)
 void app_main()
 {
 	ESP_LOGI(TAG, "USB initialization");
-	const tinyusb_config_t tusb_cfg = {
-		.device_descriptor = NULL,
-		.string_descriptor = NULL,
-		.external_phy = false,
-		.configuration_descriptor = NULL,
-	};
+	const tinyusb_config_t tusb_cfg = TINYUSB_DEFAULT_CONFIG();
 	ESP_ERROR_CHECK(tinyusb_driver_install(&tusb_cfg));
 
 	tinyusb_config_cdcacm_t acm_cfg = {
-		.usb_dev = TINYUSB_USBDEV_0,
 		.cdc_port = TINYUSB_CDC_ACM_0,
-		.rx_unread_buf_sz = 64,
 		.callback_rx = &tinyusb_cdc_rx_callback, // the first way to register a callback
 		.callback_rx_wanted_char = NULL,
 		.callback_line_state_changed = &tinyusb_cdc_line_state_changed_callback,
 		.callback_line_coding_changed = NULL
 	};
-	ESP_ERROR_CHECK(tusb_cdc_acm_init(&acm_cfg));
+	ESP_ERROR_CHECK(tinyusb_cdcacm_init(&acm_cfg));
 
+#if (CONFIG_TINYUSB_CDC_COUNT > 1)
+	acm_cfg.cdc_port = TINYUSB_CDC_ACM_1;
+	ESP_ERROR_CHECK(tusb_cdc_acm_init(&acm_cfg));
+	ESP_ERROR_CHECK(tinyusb_cdcacm_register_callback(
+		TINYUSB_CDC_ACM_1,
+		CDC_EVENT_LINE_STATE_CHANGED,
+		&tinyusb_cdc_line_state_changed_callback));
+#endif
 	// Create MessageBuffer
 	xMessageBufferTrans = xMessageBufferCreate(xBufferSizeBytes);
 	configASSERT( xMessageBufferTrans );
