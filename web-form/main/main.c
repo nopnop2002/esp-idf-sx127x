@@ -182,6 +182,19 @@ void task_rx(void *pvParameters)
 			int rxLen = lora_receive_packet(buf, sizeof(buf));
 			ESP_LOGI(pcTaskGetName(NULL), "%d byte packet received:[%.*s]", rxLen, rxLen, buf);
 
+			// WebSockets can only handle printable characters.
+			// Therefore, determine whether the characters are printable.
+			bool printable = true;
+			for (int i=0;i<rxLen;i++) {
+				int c = buf[i];
+				if (!isprint(c)) printable = false;
+			}
+			ESP_LOGI(pcTaskGetName(NULL), "printable=%d", printable);
+			if (!printable) {
+				ESP_LOGW(TAG, "Contains characters that cannot be printed");
+				continue;
+			}
+
 			buf[rxLen] = 0;
 			cJSON *root;
 			root = cJSON_CreateObject();
