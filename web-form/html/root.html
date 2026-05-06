@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+		<!--
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+		<meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+		-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css">
+		<title>SX127x</title>
+	</head>
+	<body>
+		<div class="main">
+				<div class="column">
+					<div class="card publisher">
+						<header class="card-header">
+							<h1 class="card-header-title">
+								Sender
+							</h1>
+						</header>
+						<div class="card-content">
+							<form name="publisher" class="content">
+								<div class="field">
+									<div class="control">
+										<input id="payload" name="payload" type="text" size="100" placeholder="Type here">
+									</div>
+								</div>
+							</form>
+							<div class="field is-grouped">
+								<p class="control">
+									<!--
+									<button id="sendBtn" class="card-footer-item button is-primary" onclick="sendText('send-request')">Send</button>
+									-->
+									<button id="sendBtn" onclick="sendText('send-request')">Send</button>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="column">
+					<div class="card receiver">
+						<header class="card-header">
+							<h1 class="card-header-title">
+								Receiver
+							</h1>
+						</header>
+						<div class="card-content">
+							<form name="publisher" class="content">
+								<div class="field">
+									<div class="control">
+										<label for="line">Number of display items</label>
+										<input id="line" name="line" type="number" min="10" value="10">
+									</div>
+								</div>
+							</form>
+							<div class="field is-grouped">
+								<p class="control">
+									<!--
+									<button id="lineBtn" class="card-footer-item button is-primary" onclick="changeLine()">Send</button>
+									-->
+									<button id="lineBtn" onclick="changeLine()">Change</button>
+									<button id="copyBtn" onclick="copyData()">Copy</button>
+								</p>
+							</div>
+							<div class="content">
+								<article id="article" class="message is-success">
+								</article>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		<script type="text/javascript" src="main.js"></script>
+	</body>
+</html>
