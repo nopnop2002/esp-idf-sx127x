@@ -17,7 +17,6 @@
 #include "esp_event.h"
 #include "esp_log.h"
 #include "nvs_flash.h"
-#include "mdns.h"
 
 #include "lora.h"
 
@@ -134,20 +133,6 @@ esp_err_t wifi_init_sta(void)
 	return ret_value;
 }
 
-void initialize_mdns(void)
-{
-	//initialize mDNS
-	ESP_ERROR_CHECK( mdns_init() );
-	//set mDNS hostname (required if you want to advertise services)
-	ESP_ERROR_CHECK( mdns_hostname_set(CONFIG_MDNS_HOSTNAME) );
-	ESP_LOGI(TAG, "mdns hostname set to: [%s]", CONFIG_MDNS_HOSTNAME);
-
-#if 0
-	//set default mDNS instance name
-	ESP_ERROR_CHECK( mdns_instance_name_set("ESP32 with mDNS") );
-#endif
-}
-
 #if CONFIG_SENDER
 void task_tx(void *pvParameters)
 {
@@ -227,9 +212,6 @@ void app_main()
 	configASSERT( xMessageBufferTrans );
 	xMessageBufferRecv = xMessageBufferCreate(xBufferSizeBytes);
 	configASSERT( xMessageBufferRecv );
-
-	// Initialize mDNS
-	initialize_mdns();
 
 	// Initialize LoRa
 	if (lora_init() == 0) {
