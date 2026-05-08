@@ -84,7 +84,7 @@ There are the following four methods for specifying the UDP Address.
 	I've never used it, so I don't know anything more.
 	<img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/74df801f-c4d6-42ee-b1ca-da07e9b540a3" />
 
-	- Unicast address   
+- Unicast address   
 	It is possible to cross the router with an address that specifies all octets, such as 192.168.10.41.   
 	Both the sender and receiver must specify the Unicast address.
 	<img width="659" height="486" alt="Image" src="https://github.com/user-attachments/assets/79383a16-aaf8-41c1-a02a-d16eeec9d965" />
