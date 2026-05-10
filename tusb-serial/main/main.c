@@ -168,7 +168,7 @@ void app_main()
 
 #if (CONFIG_TINYUSB_CDC_COUNT > 1)
 	acm_cfg.cdc_port = TINYUSB_CDC_ACM_1;
-	ESP_ERROR_CHECK(tusb_cdc_acm_init(&acm_cfg));
+	ESP_ERROR_CHECK(tinyusb_cdcacm_init(&acm_cfg));
 	ESP_ERROR_CHECK(tinyusb_cdcacm_register_callback(
 		TINYUSB_CDC_ACM_1,
 		CDC_EVENT_LINE_STATE_CHANGED,
