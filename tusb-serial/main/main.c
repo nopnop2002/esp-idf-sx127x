@@ -45,9 +45,11 @@ void tinyusb_cdc_rx_callback(int itf, cdcacm_event_t *event)
 	if (ret == ESP_OK) {
 		ESP_LOGD(TAG, "Data from channel=%d rx_size=%d", itf, rx_size);
 		ESP_LOG_BUFFER_HEXDUMP(TAG, buf, rx_size, ESP_LOG_INFO);
+#if CONFIG_SENDER
 		for(int i=0;i<rx_size;i++) {
 			xQueueSendFromISR(xQueueTinyusb, &buf[i], NULL);
 		}
+#endif
 	} else {
 		ESP_LOGE(TAG, "tinyusb_cdcacm_read error");
 	}
@@ -154,7 +156,10 @@ void usb_tx(void *pvParameters)
 void app_main()
 {
 	ESP_LOGI(TAG, "USB initialization");
-	const tinyusb_config_t tusb_cfg = TINYUSB_DEFAULT_CONFIG();
+	tinyusb_config_t tusb_cfg = TINYUSB_DEFAULT_CONFIG();
+#ifdef CONFIG_IDF_TARGET_ESP32P4
+	tusb_cfg.port = TINYUSB_PORT_FULL_SPEED_0;
+#endif
 	ESP_ERROR_CHECK(tinyusb_driver_install(&tusb_cfg));
 
 	tinyusb_config_cdcacm_t acm_cfg = {
