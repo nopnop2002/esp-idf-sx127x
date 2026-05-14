@@ -7,7 +7,7 @@ I based on [this](https://github.com/Inteform/esp32-lora-library).
 # Changes from the original   
 - Compatible with ESP-IDF V5/V6.   
 - Changed make to cmake.   
-- Added support for ESP32S2, ESP32S3, ESP32C2, ESP32C3 and ESP32C6.   
+- Added support for ESP32S2, ESP32S3, ESP32Cx, ESP32Hx and ESP32P4.   
 - I left the control of CS to the driver.   
 - Added several sample projects.   
 - Added some API functions.   
@@ -21,7 +21,6 @@ ESP-IDF V4.4 release branch reached EOL in July 2024.
 ```Shell
 git clone https://github.com/nopnop2002/esp-idf-sx127x
 cd esp-idf-sx127x/basic/
-idf.py set-target {esp32/esp32s2/esp32s3/esp32c2/esp32c3/esp32c6}
 idf.py menuconfig
 idf.py flash
 ```
@@ -93,7 +92,7 @@ Previously it was called HSPI_HOST / VSPI_HOST, but now it is called SPI2_HOST /
 
 # Wiring
 
-|SX127X||ESP32|ESP32-S2/S3|ESP32-C2/C3/C6|
+|SX127X||ESP32|ESP32-S2/S3|ESP32-Cx/Hx|
 |:-:|:-:|:-:|:-:|:-:|
 |RST|--|GPIO16|GPIO38|GPIO3|
 |MISO|--|GPIO19|GPIO37|GPIO4|
