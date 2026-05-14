@@ -1,0 +1,18 @@
+menu "Application Configuration"
+
+	choice DIRECTION
+		prompt "Communication polarity"
+		default SENDER
+		help
+			Select Communication polarity.
+		config SENDER
+			bool "BLE to LoRa"
+			help
+				BLE to LoRa.
+		config RECEIVER
+			bool "LoRa to BLE"
+			help
+				LoRa to BLE.
+	endchoice
+
+endmenu 
