@@ -33,7 +33,7 @@ menu "LoRa Configuration"
 
 	config ADVANCED
 		bool "Enable Advanced settings"
-		default false
+		default n
 		help
 			Enable Advanced settings.
 
